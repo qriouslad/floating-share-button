@@ -2,3 +2,83 @@
  * All of the CSS for your admin-specific functionality should be
  * included in this file.
  */
+
+.fsb-options .csf-header-inner {
+    background-color: #fafafa;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.csf-theme-dark.fsb-options .csf-header-inner h1 {
+    color:  #23282d;
+}
+
+.fsb-options .csf-header-inner h1 small {
+    font-size: 14px;
+}
+
+.fsb-options .csf-field-image_select .csf--active figure {
+    box-shadow: none;
+}
+
+.fsb-options .csf-field-image_select.icon-style img {
+    width: 44px;
+    height:  44px;
+    padding:  12px;
+}
+
+.fsb-options .csf-field-image_select.icon-options img {
+    width: 32px;
+    height:  32px;
+    padding:  12px;
+}
+
+.fsb-options .csf-field-button_set .csf--active, 
+.fsb-options .csf-field-button_set .csf--active:hover {
+    border-color:  #222;
+    background-color: #222;
+}
+
+.fsb-options .csf-field-switcher.fsb-enable .csf--switcher {
+    background-color: #ed6f6f;
+}
+
+.fsb-options .csf-field-switcher.fsb-enable .csf--active {
+    background: #4fb845;
+}
+
+.fsb-options .csf-field-switcher .csf--switcher {
+    background-color: #ccc;
+}
+
+.fsb-options .csf-field-switcher .csf--active {
+    background-color:  #222;
+}
+
+.fsb-sharesheet {
+    display:  flex;
+    /* justify-content: space-between; */
+}
+
+.fsb-sharesheet img {
+    width:  280px;
+}
+
+.fsb-sharesheet img:first-child {
+    margin-right: 12px;
+}
+
+@media (max-width: 920px) {
+
+.fsb-sharesheet {
+    justify-content: space-between;
+}
+
+    .fsb-sharesheet img {
+        width:  49%;
+    }
+
+    .fsb-sharesheet img:first-child {
+        margin-right: 0;
+    }
+
+}
