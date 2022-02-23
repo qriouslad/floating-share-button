@@ -122,6 +122,11 @@ class Floating_Share_Button {
 		 */
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-floating-share-button-public.php';
 
+		/**
+		 * Include CodeStart framework
+		 */
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/codestar-framework/codestar-framework.php';
+
 		$this->loader = new Floating_Share_Button_Loader();
 
 	}
