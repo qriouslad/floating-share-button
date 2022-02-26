@@ -9,7 +9,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-![](.wordpress-org/banner-1544x500.jpg)
+![](.wordpress-org/banner-1544x500.png)
 
 Lightweight floating share button with responsive desktop sharesheet and native iOS and Android sharesheet.
 
