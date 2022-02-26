@@ -132,7 +132,7 @@ class Floating_Share_Button_Admin {
 				'show_form_warning' => false,
 				'save_defaults'		=> true,
 				'show_footer' 		=> false,
-				'footer_credit'		=> 'Floating Share Button is built with the <a href="https://github.com/devinvinson/WordPress-Plugin-Boilerplate/" target="_blank">WordPress Plugin Boilerplate</a>, <a href="https://wppb.me" target="_blank">wppb.me</a> generator, <a href="https://github.com/Codestar/codestar-framework" target="_blank">CodeStar</a> framework and <a href="https://freeicons.io/" target="_blank">freeicons.io</a> icons.',
+				'footer_credit'		=> '<a href="https://wordpress.org/plugins/flexible-scroll-top/" target="_blank">Floating Share Button</a> (<a href="https://github.com/qriouslad/floating-share-button" target="_blank">github</a>) is built with the <a href="https://github.com/devinvinson/WordPress-Plugin-Boilerplate/" target="_blank">WordPress Plugin Boilerplate</a>, <a href="https://wppb.me" target="_blank">wppb.me</a>, <a href="https://github.com/Codestar/codestar-framework" target="_blank">CodeStar</a>, <a href="https://github.com/CodyHouse/codyhouse-framework" target="_blank">CodyFrame</a>, <a href="https://bulma.io/" target="_blank">bulma</a> and <a href="https://www.iconfinder.com/" target="_blank">IconFinder</a> icons.',
 			) );
 
 			// Create Button Options section
@@ -147,7 +147,7 @@ class Floating_Share_Button_Admin {
 						'id'		=> 'fsb_button',
 						'type'		=> 'tabbed',
 						'title' 	=> 'Share Button',
-						'subtitle' 	=> 'By simply enabling it, the floating share button uses sensible defaults that are good for most websites. You can customize the button\'s appearance and behaviour as needed.',
+						'subtitle' 	=> 'Simply enable to use sensible defaults that are good for most websites. You can customize the appearance and behaviour as needed.',
 						'tabs'		=> array(
 							array(
 								'title' => 'Main',
@@ -159,7 +159,7 @@ class Floating_Share_Button_Admin {
 										'text_on' 	=> 'Yes',
 										'text_off' 	=> 'No',
 										'default'	=> false,
-										'class'		=> 'fst-enable',
+										'class'		=> 'fsb-enable',
 									),
 									array(
 										'id' 		=> 'position',
@@ -169,7 +169,7 @@ class Floating_Share_Button_Admin {
 											'left'		=> 'Left side',
 											'right'		=> 'Right side',
 										),
-										'default'	=> 'right',
+										'default'	=> 'left',
 									),
 									array(
 										'id'		=> 'style',
@@ -196,13 +196,13 @@ class Floating_Share_Button_Admin {
 										'options'   => array(
 											'share2'	=> plugin_dir_url( __FILE__ ) . 'img/share2.png',
 											'share1'	=> plugin_dir_url( __FILE__ ) . 'img/share1.png',
-											'share3'	=> plugin_dir_url( __FILE__ ) . 'img/share3.png',
+											'share11'	=> plugin_dir_url( __FILE__ ) . 'img/share11.png',
+											'share12'	=> plugin_dir_url( __FILE__ ) . 'img/share12.png',
+											'share15'	=> plugin_dir_url( __FILE__ ) . 'img/share15.png',
 											'share4'	=> plugin_dir_url( __FILE__ ) . 'img/share4.png',
+											'share13'	=> plugin_dir_url( __FILE__ ) . 'img/share13.png',
 											'share5'	=> plugin_dir_url( __FILE__ ) . 'img/share5.png',
-											'share6'	=> plugin_dir_url( __FILE__ ) . 'img/share6.png',
-											'share7'	=> plugin_dir_url( __FILE__ ) . 'img/share7.png',
-											'share8'	=> plugin_dir_url( __FILE__ ) . 'img/share8.png',
-											'share9'	=> plugin_dir_url( __FILE__ ) . 'img/share9.png',
+											'share14'	=> plugin_dir_url( __FILE__ ) . 'img/share14.png',
 											'share10'	=> plugin_dir_url( __FILE__ ) . 'img/share10.png',
 										),
 										'default'   => 'share2',
@@ -306,19 +306,19 @@ class Floating_Share_Button_Admin {
 										'validate' => 'csf_validate_numeric',
 									),								
 									array(
-										'id' 		=> 'show_on_mobile',
+										'id' 		=> 'show_on_desktop',
 										'type' 		=> 'switcher',
-										'title' 	=> 'Show on Mobile',
-										'subtitle'	=> 'For screen widths below 800 pixels or equivalent.',
+										'title' 	=> 'Show on Desktop',
+										'subtitle'	=> 'For screen widths 800 pixels and above.',
 										'text_on' 	=> 'Yes',
 										'text_off' 	=> 'No',
 										'default'	=> true,
 									),
 									array(
-										'id' 		=> 'show_on_desktop',
+										'id' 		=> 'show_on_mobile',
 										'type' 		=> 'switcher',
-										'title' 	=> 'Show on Desktop',
-										'subtitle'	=> 'For screen widths 800 pixels and above.',
+										'title' 	=> 'Show on Mobile',
+										'subtitle'	=> 'For screen widths below 800 pixels or equivalent.',
 										'text_on' 	=> 'Yes',
 										'text_off' 	=> 'No',
 										'default'	=> true,
@@ -333,17 +333,17 @@ class Floating_Share_Button_Admin {
 					array(
 						'id'		=> 'fsb_destinations',
 						'type'		=> 'tabbed',
-						'title' 	=> 'Share Destinations',
-						'subtitle'	=> 'Customize the sharesheet on desktop devices. When supported by the mobile browser, the native sharesheet from the OS (iOS/Android) will be used.',
+						'title' 	=> 'Sharesheet',
+						'subtitle'	=> 'Customize for desktop devices. On mobile, the native sharesheet from iOS or Android will be used most of the time.',
 						'tabs'		=> array(
 							array(
 								'title' => 'Desktop Devices',
 								'subtitle' 	=> 'Drag and drop destinations to be shown when the share button is clicked.',
 								'fields' => array(
 									array(
-										'id'            => 'categories',
-										'title'			=> 'Select Destinations',
-										'subtitle'		=> 'The sharesheet will display destinations as they are enabled and ordered here.',
+										'id'            => 'destinations',
+										'title'			=> 'Destinations',
+										'subtitle'		=> 'Will be displayed as they are enabled and ordered here.',
 										'type'          => 'accordion',
 										'accordions'    => array(
 											array(
@@ -359,12 +359,13 @@ class Floating_Share_Button_Admin {
 																'twitter'		=> 'Twitter',
 																'linkedin'		=> 'LinkedIn',
 																'pinterest'		=> 'Pinterest',
-															),
-															'disabled'	=> array(
 																'snapchat'		=> 'Snapchat',
 																'vk'			=> 'VK',
+															),
+															'disabled'	=> array(
 																'qzone'			=> 'Qzone',
 																'weibo'			=> 'Weibo',
+																'mixi'			=> 'Mixi',
 															),
 														'enabled_title'		=> 'Enabled',
 														'disabled_title'	=> 'Disabled',
@@ -384,14 +385,13 @@ class Floating_Share_Button_Admin {
 															'enabled'	=> array(
 																'whatsapp'		=> 'WhatsApp',
 																'telegram'		=> 'Telegram',
-																'fbmessenger'	=> 'Messenger',
-																'slack'			=> 'Slack',
-															),
-															'disabled'	=> array(
+																'messenger'	=> 'Messenger',
+																'wechat'		=> 'WeChat',
 																'skype'			=> 'Skype',
 																'line'			=> 'Line',
+															),
+															'disabled'	=> array(
 																'viber'			=> 'Viber',
-																'wechat'		=> 'WeChat',
 																'qq'			=> 'QQ',
 															),
 														'enabled_title'		=> 'Enabled',
@@ -412,12 +412,12 @@ class Floating_Share_Button_Admin {
 														'default'	=> array(
 															'enabled'	=> array(
 																'gmail'			=> 'Gmail',
-																'yahoomail'		=> 'Yahoo Mail',
+																'yahoomail'		=> 'Ymail',
 																'outlook'		=> 'Outlook',
+																'email'			=> 'Email',
 															),
 															'disabled'	=> array(
 																'mailru'		=> 'Mail.ru',
-																'email'			=> 'Email',
 															),
 														'enabled_title'		=> 'Enabled',
 														'disabled_title'	=> 'Disabled',
@@ -439,16 +439,14 @@ class Floating_Share_Button_Admin {
 																'tumblr'		=> 'Tumblr',
 																'reddit'		=> 'Reddit',
 																'flipboard'		=> 'Flipboard',
-															),
-															'disabled'	=> array(
 																'mix'			=> 'Mix',
 																'instapaper' 	=> 'InstaPaper',
 																'pocket' 		=> 'Pocket',
-																'digg'			=> 'Digg',
+															),
+															'disabled'	=> array(
 																'hackernews' 	=> 'Hacker News',
+																'googleclassroom'	=> 'Google Classroom',
 																'buffer'		=> 'Buffer',
-																'hootsuite'		=> 'Hootsuite',
-																'printfriendly'	=> 'PrintFriendly',
 																'evernote'		=> 'Evernote',
 																'trello'		=> 'Trello',
 															),
@@ -462,17 +460,33 @@ class Floating_Share_Button_Admin {
 										),
 									),
 									array(
-										'id' 		=> 'color_scheme',
-										'type' 		=> 'button_set',
-										'title' 	=> 'Sharesheet Color Scheme',
-										'options'	=> array(
-											'dark'		=> 'Dark',
-											'light'		=> 'Light',
-										),
-										'subtitle' 	=> 'Overall appearance of the share destinations modal window.',
-										'default'	=> 'dark',
+										'id' 		=> 'qrcode',
+										'type' 		=> 'switcher',
+										'title' 	=> 'Show QR Code',
+										'subtitle'	=> 'Contains permalink of the page in view.',
+										'text_on' 	=> 'Yes',
+										'text_off' 	=> 'No',
+										'default'	=> true,
 									),
-
+									array(
+										'id' 		=> 'destinations_per_row',
+										'type' 		=> 'button_set',
+										'title' 	=> 'Destinations per Row',
+										'subtitle'	=> 'This will determine the width of the sharesheet.',
+										'options'	=> array(
+											'3'		=> '3',
+											'4'		=> '4',
+											'5'		=> '5',
+											'6'		=> '6',
+											'7'		=> '7',
+											'8'		=> '8',
+											'9'		=> '9',
+											'10'	=> '10',
+											'11'	=> '11',
+											'12'	=> '12',
+										),
+										'default'	=> '6',
+									),
 								),
 							),
 							array(
@@ -480,12 +494,12 @@ class Floating_Share_Button_Admin {
 								'fields' => array(
 									array(
 										'type' 		=> 'content',
-										'content'	=> '<p>On browsers like Safari for iOS, Chrome for Android, Edge for Android, Opera for Android, Samsung Internet for Android, and Brave for Android, clicking on the share button will open up the native sharesheet from the operating system (iOS / Android), as these browsers support the <a href="https://web.dev/web-share/" target="_blank">Web Share API</a>.</p>
-											<p>On mobile browsers that do not support the Web Share API, the sharesheet defined for desktop devices will be shown instead.</p>
+										'content'	=> '<p>On most mobile browsers (Safari, Chrome, etc), clicking on the share button will open the native sharesheet from iOS or Android, which is personalized to the user\'s sharing habit.</p>
 											<div class="fsb-sharesheet">
 											<img src="'.plugin_dir_url( __FILE__ ) . 'img/sharesheet_ios_720px.jpg" />
 											<img src="'.plugin_dir_url( __FILE__ ) . 'img/sharesheet_android_720px.jpg" />
-											</div>',
+											</div>
+											<p>On mobile browsers that do not support the <a href="https://web.dev/web-share/" target="_blank">Web Share API</a>, the responsive sharesheet defined for desktop devices will be shown instead.</p>',
 									),
 								),
 							),
