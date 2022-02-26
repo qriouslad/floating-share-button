@@ -206,6 +206,8 @@ class Floating_Share_Button_Public {
 		$idle_transparency = $options['fsb_button']['idle_transparency'];
 		$opacity = 1 - ( $idle_transparency / 100);
 
+		// Show or hide on desktop and mobile
+
 		$show_on_mobile = $options['fsb_button']['show_on_mobile'];
 
 		if ( $show_on_mobile == false ) {
@@ -227,7 +229,7 @@ class Floating_Share_Button_Public {
 		if ( $show_on_desktop == false ) {
 
 			$show_on_desktop_css = '
-			@media (min-width:8001x) {
+			@media (min-width:801px) {
 				.fsb .floating-share {
 					display: none;
 				}
@@ -728,9 +730,9 @@ class Floating_Share_Button_Public {
 			    opacity: var(--fsb-button-opacity);
 			}
 
-			'.$show_on_mobile_css.'
-
 			'.$show_on_desktop_css.'
+
+			'.$show_on_mobile_css.'
 
 			/* Sharesheet */
 
