@@ -2,3 +2,376 @@
  * All of the CSS for your public-facing functionality should be
  * included in this file.
  */
+
+/* From CodyHouse's Back to Top library - https://github.com/CodyHouse/back-floating-share/blob/master/assets/css/style.css */
+
+.floating-share {
+    position: fixed;
+    display: inline-block;
+    cursor:  pointer;
+}
+
+.fsb .floating-share {
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
+}
+.fsb .floating-share--is-visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.fsb .floating-share:hover {
+    opacity: 1;
+}
+
+/* Modal */
+
+.fsb-modal-card {
+    color: #fff;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.fsb-modal-card h3, 
+.fsb-modal-card h4 {
+    font-family: sans-serif;
+    text-transform: uppercase;
+    font-weight: normal;
+}
+
+.fsb-modal-card h3 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 1em;
+}
+
+.fsb-modal-card h4 {
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    font-size: 0.6785em;
+}
+
+.fsb-modal-card-body {
+    border-radius: 6px;
+    background-image: linear-gradient(to right top, #222222, #1b1b1b, #151515, #0c0c0c, #000000);
+    /* background-image: linear-gradient(to right top, #444444, #343434, #242424, #161616, #000000);
+    background-size: 200% 200%;
+    animation:  gradient 15s ease infinite; */
+}
+
+/* @keyframes gradient {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+*/
+
+.fsb-destinations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.destinations-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 0;
+}
+
+.fsb-qr {
+    margin-bottom: 12px;
+}
+
+.destination-box {
+    display: flex;
+    width:  56px;
+    margin: 0 8px 8px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+}
+
+.destination-box:last-child {
+    margin-right: 0;
+}
+
+.destination-box svg {
+    width: 40px;
+    height: auto;
+    padding: 8px;
+    background: #999;
+    fill: #fff;
+    border-radius: 4px;
+    transition: .25s;
+}
+
+.destination-box span {
+    text-align: center;
+    font-size:  0.625em;
+    color: #999;
+}
+
+.destination-box.facebook svg { background: #3b5998; }
+.destination-box.twitter svg { background: #1da1f2; }
+.destination-box.linkedin svg { background: #0a66c2; }
+.destination-box.pinterest svg { background: #bd081c; }
+.destination-box.snapchat svg { background: #fffc00; fill: #000;}
+.destination-box.vk svg { background: #4a76a8; }
+.destination-box.qzone svg { background: #FDCF00; }
+.destination-box.weibo svg { background: #E6162D; }
+.destination-box.mixi svg { background: #4D4D4D; }
+.destination-box.whatsapp svg { background: #25d366; }
+.destination-box.telegram svg { background: #0088cc; }
+.destination-box.messenger svg { background: #1877F2; }
+.destination-box.wechat svg { background: #2DC100; }
+.destination-box.skype svg { background: #00aff0; }
+.destination-box.line svg { background: #3ACE01; }
+.destination-box.viber svg { background: #7C529E; }
+.destination-box.qq svg { background: #000000; }
+.destination-box.gmail svg { background: #CD3C30; }
+.destination-box.yahoomail svg { background: #635378; }
+.destination-box.outlook svg { background: #127BD7; }
+.destination-box.email svg { background: #cccccce; }
+.destination-box.mailru svg { background: #FF9E00; }
+.destination-box.tumblr svg { background: #35465d; }
+.destination-box.reddit svg { background: #ff4500; }
+.destination-box.flipboard svg { background: #C60000; }
+.destination-box.mix svg { background: #FD8235; padding: 10px 8px 11px;}
+.destination-box.instapaper svg { background: #333333; }
+.destination-box.pocket svg { background: #ee4056; }
+.destination-box.hackernews svg { background: #F06200; }
+.destination-box.googleclassroom svg { background: #17A05E; }
+.destination-box.buffer svg { background: #000000; width: 30px; padding: 11px 13px;}
+.destination-box.evernote svg { background: #00A90E; }
+.destination-box.trello svg { background: #0079BF; }
+
+.destination-box svg:hover {
+    transform: translateY(-4px);
+}
+
+.fsb-debug {
+    display:  none;
+}
+
+.fsb-modal-card-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.fsb-modal-close {
+    position: absolute !important;
+    right: 12px !important;
+    top:  12px !important;
+}
+
+.fsb-modal-close:hover {
+    background: #fff !important;
+}
+
+.fsb-modal-close:hover::before, 
+.fsb-modal-close:hover::after {
+    background-color: #000 !important;
+}
+
+/* Bulma CSS - trimmed down | https://bulma.io*/
+/* https://cdn.jsdelivr.net/npm/bulma@0.9.3/css/bulma.css */
+
+/* Bulma Modal */
+
+.fsb-delete, .fsb-modal-close {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  background-color: rgba(10, 10, 10, 0.2);
+  border: none;
+  border-radius: 9999px;
+  cursor: pointer;
+  pointer-events: auto;
+  display: inline-block;
+  flex-grow: 0;
+  flex-shrink: 0;
+  font-size: 0;
+  height: 20px;
+  max-height: 20px;
+  max-width: 20px;
+  min-height: 20px;
+  min-width: 20px;
+  outline: none;
+  position: relative;
+  vertical-align: top;
+  width: 20px;
+}
+
+.fsb-delete::before, .fsb-modal-close::before, .fsb-delete::after, .fsb-modal-close::after {
+  background-color: white;
+  content: "";
+  display: block;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%) rotate(45deg);
+  transform-origin: center center;
+}
+
+.fsb-delete::before, .fsb-modal-close::before {
+  height: 2px;
+  width: 50%;
+}
+
+.fsb-delete::after, .fsb-modal-close::after {
+  height: 50%;
+  width: 2px;
+}
+
+.fsb-delete:hover, .fsb-modal-close:hover, .fsb-delete:focus, .fsb-modal-close:focus {
+  background-color: rgba(10, 10, 10, 0.3);
+}
+
+.fsb-delete:active, .fsb-modal-close:active {
+  background-color: rgba(10, 10, 10, 0.4);
+}
+
+.is-small.fsb-delete, .is-small.fsb-modal-close {
+  height: 16px;
+  max-height: 16px;
+  max-width: 16px;
+  min-height: 16px;
+  min-width: 16px;
+  width: 16px;
+}
+
+.is-medium.fsb-delete, .is-medium.fsb-modal-close {
+  height: 24px;
+  max-height: 24px;
+  max-width: 24px;
+  min-height: 24px;
+  min-width: 24px;
+  width: 24px;
+}
+
+.is-large.fsb-delete, .is-large.fsb-modal-close {
+  height: 32px;
+  max-height: 32px;
+  max-width: 32px;
+  min-height: 32px;
+  min-width: 32px;
+  width: 32px;
+}
+
+.fsb-modal, .fsb-modal-background, .is-overlay, .hero-video {
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.fsb-modal {
+  align-items: center;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  position: fixed;
+  z-index: 40;
+}
+
+.fsb-modal.is-active {
+  display: flex;
+}
+
+.fsb-modal-background {
+  background-color: rgba(10, 10, 10, 0.86);
+}
+
+.fsb-modal-content,
+.fsb-modal-card {
+  margin: 0 20px;
+  max-height: calc(100vh - 160px);
+  overflow: auto;
+  position: relative;
+  width: 100%;
+}
+
+@media screen and (min-width: 769px) {
+  .fsb-modal-content,
+  .fsb-modal-card {
+    margin: 0 auto;
+    max-height: calc(100vh - 40px);
+    /* width: 640px; Customized via settings */
+  }
+}
+
+.fsb-modal-close {
+  background: none;
+  height: 40px;
+  position: fixed;
+  right: 20px;
+  top: 20px;
+  width: 40px;
+}
+
+.fsb-modal-card {
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+  -ms-overflow-y: visible;
+}
+
+.fsb-modal-card-head,
+.fsb-modal-card-foot {
+  align-items: center;
+  background-color: whitesmoke;
+  display: flex;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  padding: 20px;
+  position: relative;
+}
+
+.fsb-modal-card-head {
+  border-bottom: 1px solid #dbdbdb;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.fsb-modal-card-title {
+  color: #363636;
+  flex-grow: 1;
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.fsb-modal-card-foot {
+  border-bottom-left-radius: 6px;
+  border-bottom-right-radius: 6px;
+  border-top: 1px solid #dbdbdb;
+}
+
+.fsb-modal-card-foot .button:not(:last-child) {
+  margin-right: 0.5em;
+}
+
+.fsb-modal-card-body {
+  -webkit-overflow-scrolling: touch;
+  background-color: #fff;
+  flex-grow: 1;
+  flex-shrink: 1;
+  overflow: auto;
+  padding: 20px;
+}
