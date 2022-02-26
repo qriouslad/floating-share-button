@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Floating Share Button
  * Plugin URI:        https://github.com/qriouslad/floating-share-button
- * Description:       A floating share button with customizable desktop sharesheet and native iOS and Android sharesheet.
+ * Description:       Lightweight floating share button with responsive desktop sharesheet and native iOS and Android sharesheet.
  * Version:           1.0.0
  * Author:            Bowo
  * Author URI:        https://bowo.io
