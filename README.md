@@ -9,7 +9,7 @@ Stable tag: 1.0.0
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
-![](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/banner-1544x500.jpg)
+![](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/banner-1544x500.jpg)
 
 Lightweight floating share button with responsive desktop sharesheet and native iOS and Android sharesheet.
 
@@ -33,19 +33,19 @@ This plugin enables a floating share button that triggers a responsive, customiz
 ## Screenshots
 
 1. The default floating share button  
-   ![The default floating share button](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/screenshot-1.png)
+   ![The default floating share button](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/screenshot-1.png)
 2. The responsive desktop sharesheet  
-   ![The responsive desktop sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/screenshot-2.png)
+   ![The responsive desktop sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/screenshot-2.png)
 3. The main settings page  
-   ![The responsive desktop sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/screenshot-3.png)
+   ![The responsive desktop sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/screenshot-3.png)
 4. Customizing the appearance  
-   ![Customizing the appearance](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/screenshot-4.png)
+   ![Customizing the appearance](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/screenshot-4.png)
 5. Customizing the behaviour  
-   ![Customizing the behaviour](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/screenshot-5.png)
+   ![Customizing the behaviour](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/screenshot-5.png)
 6. Customizing the desktop sharesheet  
-   ![Customizing the desktop sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/screenshot-6.png)
+   ![Customizing the desktop sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/screenshot-6.png)
 7. Screenshots of the native iOS and Android sharesheet  
-   ![Screenshots of the native iOS and Android sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-buttom/main/.wordpress-org/screenshot-7.png)
+   ![Screenshots of the native iOS and Android sharesheet](https://raw.githubusercontent.com/qriouslad/floating-share-button/main/.wordpress-org/screenshot-7.png)
 
 ## Frequently Asked Questions
 
