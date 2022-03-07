@@ -304,7 +304,7 @@ class Floating_Share_Button_Admin {
 										'after'		=> 'In %. 100 is fully transparent and 0 prevents fading.',
 										'default' 	=> '70',
 										'validate' => 'csf_validate_numeric',
-									),								
+									),
 									array(
 										'id' 		=> 'show_on_desktop',
 										'type' 		=> 'switcher',
