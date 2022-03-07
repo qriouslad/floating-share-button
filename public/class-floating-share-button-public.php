@@ -10,6 +10,11 @@
  * @subpackage Floating_Share_Button/public
  */
 
+declare(strict_types=1);
+
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
+
 /**
  * The public-facing functionality of the plugin.
  *
@@ -257,7 +262,19 @@ class Floating_Share_Button_Public {
 		$show_qrcode = $options['fsb_destinations']['qrcode'];
 
 		if ( $show_qrcode ) {
-			$qr_code_html = '<div class="fsb-qr"><img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fwpplugins-build.dev.bowo.io%2Fhello-world%2F" /></div>';
+
+			$permalink = get_the_permalink();
+
+			$qrcode_options = new QROptions( array(
+				'eccLevel'		=> QRCode::ECC_L,
+				'outputType'	=> QRCode::OUTPUT_MARKUP_SVG,
+				'version'		=> 5,
+			) );
+
+			$qrcode_img_url = ( new QRCode($qrcode_options))->render( $permalink );
+
+			$qr_code_html = '<div class="fsb-qr"><img src="' . $qrcode_img_url . '" /></div>';
+
 		} else {
 			$qr_code_html = '';
 		}

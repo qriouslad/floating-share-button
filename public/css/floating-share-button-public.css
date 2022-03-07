@@ -89,6 +89,11 @@
     margin-bottom: 12px;
 }
 
+.fsb-qr img {
+    width: 150px;
+    height: 150px;
+}
+
 .destination-box {
     display: flex;
     width:  56px;
