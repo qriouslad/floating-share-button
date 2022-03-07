@@ -2,10 +2,10 @@
 
 Contributors: qriouslad  
 Donate link: https://paypal.me/qriouslad
-Tags: share button, floating share, lightweight share, web share api, native mobile share  
+Tags: share button, floating share, scriptless share, web share api, native mobile share, ios android share  
 Requires at least: 5.0  
 Tested up to: 5.9.1  
-Stable tag: 1.1.0  
+Stable tag: 1.2.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,10 +55,14 @@ Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://githu
 
 ## Changelog
 
+### 1.2.0 (March 2022)
+
+* Security hardening by properly escaping output
+
 ### 1.1.0 (March 2022)
 
 * Implement local QR code generator using chillerlan/php-qrcode library
 
 ### 1.0.0 (February 2022)
 
-* Initial stable release
+* Initial release

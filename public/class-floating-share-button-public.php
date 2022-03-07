@@ -257,28 +257,6 @@ class Floating_Share_Button_Public {
 
         }
 
-        // QR Code option
-
-		$show_qrcode = $options['fsb_destinations']['qrcode'];
-
-		if ( $show_qrcode ) {
-
-			$permalink = get_the_permalink();
-
-			$qrcode_options = new QROptions( array(
-				'eccLevel'		=> QRCode::ECC_L,
-				'outputType'	=> QRCode::OUTPUT_MARKUP_SVG,
-				'version'		=> 5,
-			) );
-
-			$qrcode_img_url = ( new QRCode($qrcode_options))->render( $permalink );
-
-			$qr_code_html = '<div class="fsb-qr"><img src="' . $qrcode_img_url . '" /></div>';
-
-		} else {
-			$qr_code_html = '';
-		}
-
 		// Destinations per row >> Width of sharesheet
 
 		$destinations_per_row = $options['fsb_destinations']['destinations_per_row'];
@@ -286,43 +264,6 @@ class Floating_Share_Button_Public {
 		$destination_box_gap_width = 8; // pixels
 		$sharesheet_padding = 40; // pixels
 		$sharesheet_width = ( $destination_box_width * $destinations_per_row ) + ( ( $destinations_per_row -1 ) * $destination_box_gap_width ) + ( $sharesheet_padding * 2 ); // pixels
-
-        // Get arrays of destinations by category. Prevent undefined array key when no destination is enabled for a category.
-
-        // Social Networks
-
-        if ( isset( $options['fsb_destinations']['destinations']['social_networks']['enabled'] ) ) {
-			$destinations_social_networks = $options['fsb_destinations']['destinations']['social_networks']['enabled'];
-        } else {
-        	$destinations_social_networks = array();
-        }
-
-        // Chat Apps
-
-        if ( isset( $options['fsb_destinations']['destinations']['chat_apps']['enabled'] ) ) {
-			$destinations_chat_apps = $options['fsb_destinations']['destinations']['chat_apps']['enabled'];
-        } else {
-        	$destinations_chat_apps = array();
-        }
-
-        // Email Providers
-
-        if ( isset( $options['fsb_destinations']['destinations']['email_providers']['enabled'] ) ) {
-			$destinations_email_providers = $options['fsb_destinations']['destinations']['email_providers']['enabled'];
-        } else {	
-        	$destinations_email_providers = array();
-        }
-
-        // More
-
-        if ( isset( $options['fsb_destinations']['destinations']['more']['enabled'] ) ) {
-			$destinations_more = $options['fsb_destinations']['destinations']['more']['enabled'];
-        } else {
-        	$destinations_more = array();
-        }
-
-		$destinations_array = array_merge( $destinations_social_networks, $destinations_chat_apps, $destinations_email_providers, $destinations_more );
-		$destinations_string = implode(" ", array_keys( $destinations_array ));
 
         // Get post permalink, title and featured image
 
@@ -370,6 +311,65 @@ class Floating_Share_Button_Public {
         	'trello'		=> 'https://trello.com/add-card',
         );
 
+		// Prepare escaping svg icons, for wp_kses()
+
+		$svg_args = array(
+			'svg'	=> array(
+				'class'		=> true,
+				'viewbox'	=> true,
+				'width'		=> true,
+				'height'	=> true,
+				'stroke'	=> true,
+				'stroke-width'		=> true,
+				'stroke-linecap'	=> true,
+				'stroke-linejoin'	=> true,
+			),
+			'g'		=> array(
+				'fill'		=> true,
+				'class'		=> true,
+			),
+			'path'	=> array(
+				'd'			=> true,
+				'clip-rule' => true,
+				'fill'		=> true,
+				'fill-rule'	=> true,
+				'class'		=> true,
+			),
+			'line'	=> array(
+				'x1'		=> true,
+				'y1'		=> true,
+				'x2'		=> true,
+				'y3'		=> true,
+				'class'		=> true,
+			),
+			'circle'	=> array(
+				'cx'		=> true,
+				'cy'		=> true,
+				'r'			=> true,
+				'class'		=> true,
+			),
+			'rect'	=> array(
+				'height'	=> true,
+				'width'		=> true,
+				'x'			=> true,
+				'y'			=> true,
+				'class'		=> true,
+			),
+			'polygon'	=> array(
+				'points'	=> true,
+				'class'		=> true,
+			),
+			'polyline'	=> array(
+				'points'	=> true,
+				'class'		=> true,
+			),
+			'style'	=> array(
+			),
+			'title'	=> array(
+				'title'		=> true,
+			),
+		);
+
         $share_icons = array(
         	'facebook'		=> '<svg viewBox="0 0 24 24" width="24" height="24"><path d="M16.75,9H13.5V7a1,1,0,0,1,1-1h2V3H14a4,4,0,0,0-4,4V9H8v3h2v9h3.5V12H16Z"/></svg>',
         	'twitter'		=> '<svg viewBox="0 0 24 24" width="24" height="24"><title/><circle cx="16" cy="8" r="4"/><path d="M12.58331,8.83331C12.37488,8.83331,12,9.26563,12,9.5A8.5,8.5,0,0,1,3.5,18a8.52217,8.52217,0,0,1-1.28479-.1073A11.41717,11.41717,0,0,0,20,8.41663C20,7.681,15.31757,8.83331,12.58331,8.83331Z"/><path d="M12.58331,8.83331a11.385,11.385,0,0,1-8.69452-4.028A3.93758,3.93758,0,0,0,3.35,6.77081,3.9792,3.9792,0,0,0,7.32916,10.75c2.12482,0,5.89844.02264,6.14691-1.96179C13.18054,8.81116,12.8847,8.83331,12.58331,8.83331Z"/><path d="M5.24585,10.04163a3.93437,3.93437,0,0,1-1.88977-.49774c-.00031.02057-.0061.03961-.0061.06024a3.9792,3.9792,0,0,0,3.97919,3.97919c2.19763,0,5.275-1.594,5.275-3.79165C12.60417,8.282,7.42285,10.04163,5.24585,10.04163Z"/><path d="M7.72642,12.99649a3.90991,3.90991,0,0,1-3.02909.52286A3.96636,3.96636,0,0,0,8.49585,16.375a5.25835,5.25835,0,0,0,4.67082-4.66667C13.16667,9.81478,8.82831,12.28888,7.72642,12.99649Z"/><path d="M17.61041,5.37915c-1.32214,0-1.63562,1.6604.075,1.6604a3.96629,3.96629,0,0,0,3.754-2.71222A7.49909,7.49909,0,0,1,17.61041,5.37915Z"/><path d="M18.82916,6.5354a7.52209,7.52209,0,0,1-2.93716-.593c-2.70831-1.14551-4.35526,3.343-.18784,3.343A7.53392,7.53392,0,0,0,22.05579,5.803,7.50268,7.50268,0,0,1,18.82916,6.5354Z"/></svg>',
@@ -407,390 +407,426 @@ class Floating_Share_Button_Public {
 
         );
 
-        // Define which share buttons to output
-
-        $destinations_output = '';
-       	$destination_category = '';
-        $destination_buttons = '';
-
-        // Social Networks
-
-        if ( !empty( $destinations_social_networks ) ) {
-
-        	$destination_category = 'Social Networks';
-
-	        foreach ( $destinations_social_networks as $destination_key => $destination_value ) {
-
-	       		$destination_button = '';
-
-	        	switch ( $destination_key ) {
-
-	        		case 'facebook':
-	        			$destination_url = $share_urls['facebook'].'?u='.$post_url;
-	        			break;
-
-	        		case 'twitter':
-	        			$destination_url = $share_urls['twitter'].'?url='.$post_url.'&text='.$post_title;
-	        			break;
-
-	        		case 'linkedin':
-	        			$destination_url = $share_urls['linkedin'].'?url='.$post_url.'&title='.$post_title;
-	        			break;
-
-	        		case 'pinterest':
-	        			$destination_url = $share_urls['pinterest'].'?media='.$post_media.'&url='.$post_url.'&description='.$post_title;
-	        			break;
-
-	        		case 'snapchat':
-	        			$destination_url = $share_urls['snapchat'].'?&attachmentUrl='.$post_url;
-	        			break;
-
-	        		case 'vk':
-	        			$destination_url = $share_urls['vk'].'?&url='.$post_url;
-	        			break;
-
-	        		case 'qzone':
-	        			$destination_url = $share_urls['qzone'].'?&url='.$post_url.'&title='.$post_title.'&summary='.$post_title.'&pics='.$post_media;
-	        			break;
-
-	        		case 'weibo':
-	        			$destination_url = $share_urls['weibo'].'?title='.$post_title.'&url='.$post_url.'&pic='.$post_media;
-	        			break;
-
-	        		case 'mixi':
-	        			$destination_url = $share_urls['mixi'].'?u='.$post_url;
-	        			break;
-
-	        	}
-
-       			$destination_button = '<a href="'.$destination_url.'" class="destination-box '.$destination_key.'" target="_blank">'.$share_icons[$destination_key].'<span>'.$destination_value.'</span></a>';
-
-	       		$destination_buttons .= $destination_button;
-
-	        }
-
-       		$destinations_output .= '<h4>'.$destination_category.'</h4>';
-       		$destinations_output .= '<div class="destinations-wrapper">'.$destination_buttons.'</div>';
-
-        }
-
-        // Chat Apps
-
-        $destination_buttons = '';
-
-        if ( !empty( $destinations_chat_apps ) ) {
-
-        	$destination_category = 'Chat Apps';
-
-	        foreach ( $destinations_chat_apps as $destination_key => $destination_value ) {
-
-	       		$destination_button = '';
-
-	        	switch ( $destination_key ) {
-
-	        		case 'whatsapp':
-	        			$destination_url = $share_urls['whatsapp'].'?text='.$post_title.' '.$post_url;
-	        			break;
-
-	        		case 'telegram':
-	        			$destination_url = $share_urls['telegram'].'?url='.$post_url.'&text='.$post_title;
-	        			break;
-
-	        		case 'messenger':
-	        			$destination_url = $share_urls['messenger'].'?link='.$post_url;
-	        			break;
-
-	        		case 'wechat':
-	        			$destination_url = $share_urls['wechat'].'?url='.$post_url;
-	        			break;
-
-	        		case 'skype':
-	        			$destination_url = $share_urls['skype'].'?text='.$post_title;
-	        			break;
-
-	        		case 'line':
-	        			$destination_url = $share_urls['line'].'?text='.$post_title;
-	        			break;
-
-	        		case 'viber':
-	        			$destination_url = $share_urls['viber'].'?text='.$post_title;
-	        			break;
-
-	        		case 'wechat':
-	        			$destination_url = $share_urls['wechat'].'?text='.$post_title;
-	        			break;
-
-	        		case 'skype':
-	        			$destination_url = $share_urls['skype'].'?url='.$post_url.'&text='.$post_title;
-	        			break;
-
-	        		case 'line':
-	        			$destination_url = $share_urls['line'].'?url='.$post_url.'&text='.$post_title;
-	        			break;
-
-	        		case 'viber':
-	        			$destination_url = $share_urls['line'].'?text='.$post_title.' '.$post_url;
-	        			break;
-
-	        		case 'qq':
-	        			$destination_url = $share_urls['qq'].'?url='.$post_url.'&title='.$post_title.'&summary=&pics=';
-	        			break;
-
-	        	}
-
-       			$destination_button = '<a href="'.$destination_url.'" class="destination-box '.$destination_key.'" target="_blank">'.$share_icons[$destination_key].'<span>'.$destination_value.'</span></a>';
-
-	       		$destination_buttons .= $destination_button;
-
-	        }
-
-       		$destinations_output .= '<h4>'.$destination_category.'</h4>';
-       		$destinations_output .= '<div class="destinations-wrapper">'.$destination_buttons.'</div>';
-
-        }
-
-        // Email Providers
-
-        $destination_buttons = '';
-
-        if ( !empty( $destinations_email_providers ) ) {
-
-        	$destination_category = 'Email Providers';
-
-	        foreach ( $destinations_email_providers as $destination_key => $destination_value ) {
-
-	       		$destination_button = '';
-
-	        	switch ( $destination_key ) {
-
-	        		case 'gmail':
-	        			$destination_url = $share_urls['gmail'].'?view=cm&to=&su=Article: '.$post_title.'&body='.$post_url;
-	        			break;
-
-	        		case 'yahoomail':
-	        			$destination_url = $share_urls['yahoomail'].'?to=&subject='.$post_title.'&body='.$post_url;
-	        			break;
-
-	        		case 'outlook':
-	        			$destination_url = $share_urls['outlook'].'?path=%2Fmail%2Finbox&subject='.$post_title.'&body='.$post_url;
-	        			break;
-
-	        		case 'email':
-	        			$destination_url = $share_urls['email'].'?subject='.$post_title.'&body='.$post_url;
-	        			break;
-
-	        		case 'mailru':
-	        			$destination_url = $share_urls['mailru'].'?share_url='.$post_url;
-	        			break;
-
-	        	}
-
-       			$destination_button = '<a href="'.$destination_url.'" class="destination-box '.$destination_key.'" target="_blank">'.$share_icons[$destination_key].'<span>'.$destination_value.'</span></a>';
-
-	       		$destination_buttons .= $destination_button;
-
-	        }
-
-       		$destinations_output .= '<h4>'.$destination_category.'</h4>';
-       		$destinations_output .= '<div class="destinations-wrapper">'.$destination_buttons.'</div>';
-
-        }
-
-        // More Destinations
-
-        $destination_buttons = '';
-
-        if ( !empty( $destinations_more ) ) {
-
-        	$destination_category = 'Other Destinations';
-
-	        foreach ( $destinations_more as $destination_key => $destination_value ) {
-
-	       		$destination_button = '';
-
-	        	switch ( $destination_key ) {
-
-	        		case 'tumblr':
-	        			$destination_url = $share_urls['tumblr'].'?t='.$post_title.'&t=u='.$post_url.'&v=3';
-	        			break;
-
-	        		case 'reddit':
-	        			$destination_url = $share_urls['reddit'].'?title='.$post_title.'&url='.$post_url;
-	        			break;
-
-	        		case 'flipboard':
-	        			$destination_url = $share_urls['flipboard'].'?title='.$post_title.'&url='.$post_url;
-	        			break;
-
-	        		case 'mix':
-	        			$destination_url = $share_urls['mix'].'?url='.$post_url;
-	        			break;
-
-	        		case 'instapaper':
-	        			$destination_url = $share_urls['instapaper'].'?url='.$post_url.'&title='.$post_title.'&description=';
-	        			break;
-
-	        		case 'pocket':
-	        			$destination_url = $share_urls['pocket'].'?url='.$post_url;
-	        			break;
-
-	        		case 'hackernews':
-	        			$destination_url = $share_urls['hackernews'].'?u='.$post_url.'&t='.$post_title;
-	        			break;
-
-	        		case 'googleclassroom':
-	        			$destination_url = $share_urls['googleclassroom'].'?url='.urldecode($post_url);
-	        			break;
-
-	        		case 'buffer':
-	        			$destination_url = $share_urls['buffer'].'?text='.$post_title.'&url='.$post_title;
-	        			break;
-
-	        		case 'evernote':
-	        			$destination_url = $share_urls['evernote'].'?title='.$post_title.'&url='.$post_url;
-	        			break;
-
-	        		case 'trello':
-	        			$destination_url = $share_urls['trello'].'?mode=popup&url='.$post_url.'&name='.$post_title.'&desc='.$post_url;
-	        			break;
-
-	        	}
-
-       			$destination_button = '<a href="'.$destination_url.'" class="destination-box '.$destination_key.'" target="_blank">'.$share_icons[$destination_key].'<span>'.$destination_value.'</span></a>';
-
-	       		$destination_buttons .= $destination_button;
-
-	        }
-
-       		$destinations_output .= '<h4>'.$destination_category.'</h4>';
-       		$destinations_output .= '<div class="destinations-wrapper">'.$destination_buttons.'</div>';
-
-        }
-
-        // Custom styles
-
-		$styles = '
-
-			:root {
-				--fsb-corner-spacing: '.$corner_spacing_numeric.'px;
-				--fsb-icon-size: '.$size_numeric.'px;
-				--fsb-background-color: '.$background_color.';
-				--fsb-icon-color: '.$icon_color.';
-				--fsb-border-color: '.$border_color.';
-				--fsb-button-opacity: '.$opacity.'; 
-			}
-
-			.floating-share {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				padding: 8px;
-				background: var(--fsb-background-color);
-				border: 0;
-			}
-
-			.floating-share svg {
-				width: var(--fsb-icon-size);
-				height: var(--fsb-icon-size);
-				fill: var(--fsb-icon-color);
-			}
-
-			.floating-share svg.fsb-share11, 
-			.floating-share svg.fsb-share12 {
-				stroke: var(--fsb-icon-color);
-			}
-
-			.floating-share svg path {
-				fill: var(--fsb-icon-color);
-			}
-
-			.floating-share svg.fsb-share13 {
-				fill: none;
-			}
-
-			.floating-share svg.fsb-share12 path,
-			.floating-share svg.fsb-share13 path {
-				fill: none;
-			}
-
-			.floating-share svg.fsb-share13 path:last-child {
-				fill: var(--fsb-icon-color);
-			}
-
-			.floating-share.right-side {
-				bottom: var(--fsb-corner-spacing);
-				right: var(--fsb-corner-spacing);
-			}
-
-			.floating-share.left-side {
-				bottom: var(--fsb-corner-spacing);
-				left: var(--fsb-corner-spacing);
-			}
-
-			.floating-share.style-rounded {
-				border-radius: 4px;
-			}
-
-			.floating-share.style-square {
-				border-radius: 0;
-			}
-
-			.floating-share.style-circle {
-				border-radius: 1000px;
-			}
-
-			.floating-share.has-border {
-				border: 1px solid var(--fsb-border-color);
-			}
-
-			.fsb .floating-share--fade-out {
-			    opacity: var(--fsb-button-opacity);
-			}
-
-			'.$show_on_desktop_css.'
-
-			'.$show_on_mobile_css.'
-
-			/* Sharesheet */
-
-			@media screen and (min-width: 769px) {
-				.fsb-modal-content,
-				.fsb-modal-card {
-					width: '.$sharesheet_width.'px;
-				}
-			}
-
-		';
-
-		// Remove line breaks so it does not cause error during script execution
-		$styles = preg_replace( "/\r|\n/", "", $styles );
-
         // Output button, sharesheet and styles if functionality is enabled
 
 		if ( $enabled == true ) {
 
+	        // Custom styles
+
+			$styles = '
+
+				:root {
+					--fsb-corner-spacing: '.esc_attr( $corner_spacing_numeric ).'px;
+					--fsb-icon-size: '.esc_attr( $size_numeric ).'px;
+					--fsb-background-color: '.esc_attr( $background_color ).';
+					--fsb-icon-color: '.esc_attr( $icon_color ).';
+					--fsb-border-color: '.esc_attr( $border_color ).';
+					--fsb-button-opacity: '.esc_attr( $opacity ).'; 
+				}
+
+				.floating-share {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 8px;
+					background: var(--fsb-background-color);
+					border: 0;
+				}
+
+				.floating-share svg {
+					width: var(--fsb-icon-size);
+					height: var(--fsb-icon-size);
+					fill: var(--fsb-icon-color);
+				}
+
+				.floating-share svg.fsb-share11, 
+				.floating-share svg.fsb-share12 {
+					stroke: var(--fsb-icon-color);
+				}
+
+				.floating-share svg path {
+					fill: var(--fsb-icon-color);
+				}
+
+				.floating-share svg.fsb-share13 {
+					fill: none;
+				}
+
+				.floating-share svg.fsb-share12 path,
+				.floating-share svg.fsb-share13 path {
+					fill: none;
+				}
+
+				.floating-share svg.fsb-share13 path:last-child {
+					fill: var(--fsb-icon-color);
+				}
+
+				.floating-share.right-side {
+					bottom: var(--fsb-corner-spacing);
+					right: var(--fsb-corner-spacing);
+				}
+
+				.floating-share.left-side {
+					bottom: var(--fsb-corner-spacing);
+					left: var(--fsb-corner-spacing);
+				}
+
+				.floating-share.style-rounded {
+					border-radius: 4px;
+				}
+
+				.floating-share.style-square {
+					border-radius: 0;
+				}
+
+				.floating-share.style-circle {
+					border-radius: 1000px;
+				}
+
+				.floating-share.has-border {
+					border: 1px solid var(--fsb-border-color);
+				}
+
+				.fsb .floating-share--fade-out {
+				    opacity: var(--fsb-button-opacity);
+				}
+
+				'.$show_on_desktop_css.'
+
+				'.$show_on_mobile_css.'
+
+				/* Sharesheet */
+
+				@media screen and (min-width: 769px) {
+					.fsb-modal-content,
+					.fsb-modal-card {
+						width: '.esc_attr( $sharesheet_width ).'px;
+					}
+				}
+
+			';
+
+			// Remove line breaks so it does not cause error during script execution
+			$styles = preg_replace( "/\r|\n/", "", $styles );
+
 			// Output the share button
 
-			$output = '
+			echo '
 				<div class="fsb">
-					<button class="floating-share fsb-button">'.$svg.'</button>
+					<button class="floating-share fsb-button">'. wp_kses( $svg, $svg_args ) .'</button>
 				</div>
 			';
 
 			// Output the sharesheet
 			// Modified from https://codepen.io/ayoisaiah/pen/WBpzBo
-			// QR code API https://goqr.me/api/
 
-			$output .= '
+	        // Sharesheet modal top part
+			echo '
 				<div class="fsb-modal">
 					<div class="fsb-modal-background"></div>
 					<div class="fsb-modal-card">
 						<section class="fsb-modal-card-body">
-							<h3 class="fsb-modal-title">Share this page</h3>
-							'.$qr_code_html.'
-							<div class="fsb-destinations">'.$destinations_output.'</div>
+							<h3 class="fsb-modal-title">Share this page</h3>';
+	
+	        // QR Code option
+
+			$show_qrcode = $options['fsb_destinations']['qrcode'];
+
+			if ( $show_qrcode ) {
+
+				$permalink = get_the_permalink();
+
+				$qrcode_options = new QROptions( array(
+					'eccLevel'		=> QRCode::ECC_L,
+					'outputType'	=> QRCode::OUTPUT_MARKUP_SVG,
+					'version'		=> 5,
+				) );
+
+				$qrcode_img_data = ( new QRCode($qrcode_options))->render( $permalink );
+
+				// Output the QR code
+
+				echo '<div class="fsb-qr"><img src="' . esc_url( $qrcode_img_data, array( 'data' ) ) . '" /></div>';
+
+			}
+
+			// Share destinations
+
+			echo '<div class="fsb-destinations">';
+
+	        // Get arrays of destinations by category. Prevent undefined array key when no destination is enabled for a category.
+
+	        // Social Networks
+
+	        if ( isset( $options['fsb_destinations']['destinations']['social_networks']['enabled'] ) ) {
+				$destinations_social_networks = $options['fsb_destinations']['destinations']['social_networks']['enabled'];
+	        } else {
+	        	$destinations_social_networks = array();
+	        }
+
+	        // Chat Apps
+
+	        if ( isset( $options['fsb_destinations']['destinations']['chat_apps']['enabled'] ) ) {
+				$destinations_chat_apps = $options['fsb_destinations']['destinations']['chat_apps']['enabled'];
+	        } else {
+	        	$destinations_chat_apps = array();
+	        }
+
+	        // Email Providers
+
+	        if ( isset( $options['fsb_destinations']['destinations']['email_providers']['enabled'] ) ) {
+				$destinations_email_providers = $options['fsb_destinations']['destinations']['email_providers']['enabled'];
+	        } else {	
+	        	$destinations_email_providers = array();
+	        }
+
+	        // More
+
+	        if ( isset( $options['fsb_destinations']['destinations']['more']['enabled'] ) ) {
+				$destinations_more = $options['fsb_destinations']['destinations']['more']['enabled'];
+	        } else {
+	        	$destinations_more = array();
+	        }
+
+			$destinations_array = array_merge( $destinations_social_networks, $destinations_chat_apps, $destinations_email_providers, $destinations_more );
+			$destinations_string = implode(" ", array_keys( $destinations_array ));
+
+	        // Social Networks
+
+	        if ( !empty( $destinations_social_networks ) ) {
+
+	       		echo '<h4>Social Networks</h4>';
+	       		echo '<div class="destinations-wrapper">';
+
+		        foreach ( $destinations_social_networks as $destination_key => $destination_value ) {
+
+		        	switch ( $destination_key ) {
+
+		        		case 'facebook':
+		        			$destination_url = $share_urls['facebook'].'?u='.$post_url;
+		        			break;
+
+		        		case 'twitter':
+		        			$destination_url = $share_urls['twitter'].'?url='.$post_url.'&text='.$post_title;
+		        			break;
+
+		        		case 'linkedin':
+		        			$destination_url = $share_urls['linkedin'].'?url='.$post_url.'&title='.$post_title;
+		        			break;
+
+		        		case 'pinterest':
+		        			$destination_url = $share_urls['pinterest'].'?media='.$post_media.'&url='.$post_url.'&description='.$post_title;
+		        			break;
+
+		        		case 'snapchat':
+		        			$destination_url = $share_urls['snapchat'].'?&attachmentUrl='.$post_url;
+		        			break;
+
+		        		case 'vk':
+		        			$destination_url = $share_urls['vk'].'?&url='.$post_url;
+		        			break;
+
+		        		case 'qzone':
+		        			$destination_url = $share_urls['qzone'].'?&url='.$post_url.'&title='.$post_title.'&summary='.$post_title.'&pics='.$post_media;
+		        			break;
+
+		        		case 'weibo':
+		        			$destination_url = $share_urls['weibo'].'?title='.$post_title.'&url='.$post_url.'&pic='.$post_media;
+		        			break;
+
+		        		case 'mixi':
+		        			$destination_url = $share_urls['mixi'].'?u='.$post_url;
+		        			break;
+
+		        	}
+
+	       			echo '<a href="'.esc_url( $destination_url ).'" class="destination-box '.esc_attr( $destination_key ).'" target="_blank">'.wp_kses( $share_icons[$destination_key], $svg_args ).'<span>'.esc_html( $destination_value ).'</span></a>';
+
+		        }
+
+	       		echo '</div>'; // close <div class="destinations-wrapper">
+
+	        }
+
+	        // Chat Apps
+
+	        if ( !empty( $destinations_chat_apps ) ) {
+
+	       		echo '<h4>Chat Apps</h4>';
+	       		echo '<div class="destinations-wrapper">';
+
+		        foreach ( $destinations_chat_apps as $destination_key => $destination_value ) {
+
+		        	switch ( $destination_key ) {
+
+		        		case 'whatsapp':
+		        			$destination_url = $share_urls['whatsapp'].'?text='.$post_title.' '.$post_url;
+		        			break;
+
+		        		case 'telegram':
+		        			$destination_url = $share_urls['telegram'].'?url='.$post_url.'&text='.$post_title;
+		        			break;
+
+		        		case 'messenger':
+		        			$destination_url = $share_urls['messenger'].'?link='.$post_url;
+		        			break;
+
+		        		case 'wechat':
+		        			$destination_url = $share_urls['wechat'].'?url='.$post_url;
+		        			break;
+
+		        		case 'skype':
+		        			$destination_url = $share_urls['skype'].'?text='.$post_title;
+		        			break;
+
+		        		case 'line':
+		        			$destination_url = $share_urls['line'].'?text='.$post_title;
+		        			break;
+
+		        		case 'viber':
+		        			$destination_url = $share_urls['viber'].'?text='.$post_title;
+		        			break;
+
+		        		case 'wechat':
+		        			$destination_url = $share_urls['wechat'].'?text='.$post_title;
+		        			break;
+
+		        		case 'skype':
+		        			$destination_url = $share_urls['skype'].'?url='.$post_url.'&text='.$post_title;
+		        			break;
+
+		        		case 'line':
+		        			$destination_url = $share_urls['line'].'?url='.$post_url.'&text='.$post_title;
+		        			break;
+
+		        		case 'viber':
+		        			$destination_url = $share_urls['line'].'?text='.$post_title.' '.$post_url;
+		        			break;
+
+		        		case 'qq':
+		        			$destination_url = $share_urls['qq'].'?url='.$post_url.'&title='.$post_title.'&summary=&pics=';
+		        			break;
+
+		        	}
+
+	       			echo '<a href="'.esc_url( $destination_url ).'" class="destination-box '.esc_attr( $destination_key ).'" target="_blank">'.wp_kses( $share_icons[$destination_key], $svg_args ).'<span>'.esc_html( $destination_value ).'</span></a>';
+
+		        }
+
+	       		echo '</div>'; // close <div class="destinations-wrapper">
+
+	        }
+
+	        // Email Providers
+
+	        if ( !empty( $destinations_email_providers ) ) {
+
+	       		echo '<h4>Email Providers</h4>';
+	       		echo '<div class="destinations-wrapper">';
+
+		        foreach ( $destinations_email_providers as $destination_key => $destination_value ) {
+
+		        	switch ( $destination_key ) {
+
+		        		case 'gmail':
+		        			$destination_url = $share_urls['gmail'].'?view=cm&to=&su=Article: '.$post_title.'&body='.$post_url;
+		        			break;
+
+		        		case 'yahoomail':
+		        			$destination_url = $share_urls['yahoomail'].'?to=&subject='.$post_title.'&body='.$post_url;
+		        			break;
+
+		        		case 'outlook':
+		        			$destination_url = $share_urls['outlook'].'?path=%2Fmail%2Finbox&subject='.$post_title.'&body='.$post_url;
+		        			break;
+
+		        		case 'email':
+		        			$destination_url = $share_urls['email'].'?subject='.$post_title.'&body='.$post_url;
+		        			break;
+
+		        		case 'mailru':
+		        			$destination_url = $share_urls['mailru'].'?share_url='.$post_url;
+		        			break;
+
+		        	}
+
+	       			echo '<a href="'.esc_url( $destination_url ).'" class="destination-box '.esc_attr( $destination_key ).'" target="_blank">'.wp_kses( $share_icons[$destination_key], $svg_args ).'<span>'.esc_html( $destination_value ).'</span></a>';
+
+		        }
+
+	       		echo '</div>'; // close <div class="destinations-wrapper">
+
+	        }
+
+	        // More Destinations
+
+	        if ( !empty( $destinations_more ) ) {
+
+	       		echo '<h4>Other Destinations</h4>';
+	       		echo '<div class="destinations-wrapper">';
+
+		        foreach ( $destinations_more as $destination_key => $destination_value ) {
+
+		        	switch ( $destination_key ) {
+
+		        		case 'tumblr':
+		        			$destination_url = $share_urls['tumblr'].'?t='.$post_title.'&t=u='.$post_url.'&v=3';
+		        			break;
+
+		        		case 'reddit':
+		        			$destination_url = $share_urls['reddit'].'?title='.$post_title.'&url='.$post_url;
+		        			break;
+
+		        		case 'flipboard':
+		        			$destination_url = $share_urls['flipboard'].'?title='.$post_title.'&url='.$post_url;
+		        			break;
+
+		        		case 'mix':
+		        			$destination_url = $share_urls['mix'].'?url='.$post_url;
+		        			break;
+
+		        		case 'instapaper':
+		        			$destination_url = $share_urls['instapaper'].'?url='.$post_url.'&title='.$post_title.'&description=';
+		        			break;
+
+		        		case 'pocket':
+		        			$destination_url = $share_urls['pocket'].'?url='.$post_url;
+		        			break;
+
+		        		case 'hackernews':
+		        			$destination_url = $share_urls['hackernews'].'?u='.$post_url.'&t='.$post_title;
+		        			break;
+
+		        		case 'googleclassroom':
+		        			$destination_url = $share_urls['googleclassroom'].'?url='.urldecode($post_url);
+		        			break;
+
+		        		case 'buffer':
+		        			$destination_url = $share_urls['buffer'].'?text='.$post_title.'&url='.$post_title;
+		        			break;
+
+		        		case 'evernote':
+		        			$destination_url = $share_urls['evernote'].'?title='.$post_title.'&url='.$post_url;
+		        			break;
+
+		        		case 'trello':
+		        			$destination_url = $share_urls['trello'].'?mode=popup&url='.$post_url.'&name='.$post_title.'&desc='.$post_url;
+		        			break;
+
+		        	}
+
+	       			echo '<a href="'.esc_url( $destination_url ).'" class="destination-box '.esc_attr( $destination_key ).'" target="_blank">'.wp_kses( $share_icons[$destination_key], $svg_args ).'<span>'.esc_html( $destination_value ).'</span></a>';
+
+		        }
+
+	       		echo '</div>'; // close <div class="destinations-wrapper">
+
+	        }
+
+	        // Sharesheet modal bottom part
+			echo 			'</div>
 							<div class="fsb-debug">
-								<p>'.$destinations_string.'</p>
+								<p>'.esc_html( $destinations_string ).'</p>
 							</div>
 						</section>
 						<button class="fsb-modal-close is-large"></button>
@@ -800,7 +836,7 @@ class Floating_Share_Button_Public {
 
 			// Output the script to trigger sharesheet display
 
-			$output .= '
+			echo '
 				<script id="floating-share-button">
 
 					// Set button behaviour
@@ -809,14 +845,14 @@ class Floating_Share_Button_Public {
 					var fsbButton = document.getElementsByClassName("fsb-button")[0],
 						floatingShareVisibleClass = "floating-share--is-visible";
 						floatingShareFadeOutClass = "floating-share--fade-out";
-						fsbPositionClass = "'.$position_class.'",
-						fsbStyleClass = "'.$style_class.'",
-						fsbBorderClass = "'.$border_class.'",
-						fsbColorSchemeClass = "'.$color_scheme_class.'",
-						fsbOffset = '.$offset_show.',
-						fsbOffsetOpacity = '.$offset_fade.',
+						fsbPositionClass = "'.esc_attr( $position_class ).'",
+						fsbStyleClass = "'.esc_attr( $style_class ).'",
+						fsbBorderClass = "'.esc_attr( $border_class ).'",
+						fsbColorSchemeClass = "'.esc_attr( $color_scheme_class ).'",
+						fsbOffset = '.esc_attr( $offset_show ).',
+						fsbOffsetOpacity = '.esc_attr( $offset_fade ).',
 						fsbScrolling = false,
-						fsbDevice = "'.$device.'",
+						fsbDevice = "'.esc_attr( $device ).'",
 						shareModal = document.querySelector(".fsb-modal"),
 						shareModalBg = document.querySelector(".fsb-modal-background"),
 						shareSheet = document.querySelector(".fsb-modal-content"),
@@ -826,7 +862,7 @@ class Floating_Share_Button_Public {
 
 					// Add HTML <styles> block for custom styles
 
-					var fsbStyles = "<style id=\"floating-share-button\">'.$styles.'</style>";
+					var fsbStyles = "<style id=\"floating-share-button\">'.esc_attr( $styles ).'</style>";
 
 					window.addEventListener("load",function(event) {
 						document.head.insertAdjacentHTML("beforeend", fsbStyles);
@@ -869,8 +905,8 @@ class Floating_Share_Button_Public {
 
 							if (navigator.share) { 
 								navigator.share({
-									title: "'.urldecode( $post_title ).'",
-									url: "'.$post_url.'"
+									title: "'.esc_attr( urldecode( $post_title ) ).'",
+									url: "'.esc_attr( $post_url ).'"
 								}).then(() => {
 									console.log("Thanks for sharing!");
 								})
@@ -901,8 +937,6 @@ class Floating_Share_Button_Public {
 
 				</script>
 			';
-
-			echo $output;
 
 		}
 
