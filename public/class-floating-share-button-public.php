@@ -269,7 +269,12 @@ class Floating_Share_Button_Public {
 
         $post_url = urlencode( get_the_permalink() );
         $post_title = urlencode( get_the_title() );
-        $post_media = urlencode( get_the_post_thumbnail_url( get_the_ID(), 'full' ) );
+
+        if ( !empty( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ) ) {
+	        $post_media = urlencode( get_the_post_thumbnail_url( get_the_ID(), 'full' ) );
+        } else {
+        	$post_media = '';
+        }
 
         // Array of share URLs
         // References: https://sharethis.com/ -- https://www.addthis.com/ -- https://www.addtoany.com/share
