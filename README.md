@@ -5,7 +5,7 @@ Donate link: https://paypal.me/qriouslad
 Tags: share button, floating share, lightweight share, web share api, native mobile share  
 Requires at least: 5.0  
 Tested up to: 5.9.1  
-Stable tag: 1.0.0  
+Stable tag: 1.1.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -54,6 +54,10 @@ This plugin enables a floating share button that triggers a responsive, customiz
 Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) | [wppb.me](https://wppb.me/) | [CodeStar framework](https://github.com/Codestar/codestar-framework) | [CodyFrame](https://github.com/CodyHouse/codyhouse-framework) | [bulma](https://bulma.io/) | Icons from [IconFinder.com](https://www.iconfinder.com/).
 
 ## Changelog
+
+### 1.1.0 (March 2022)
+
+* Implement local QR code generator using chillerlan/php-qrcode library
 
 ### 1.0.0 (February 2022)
 
