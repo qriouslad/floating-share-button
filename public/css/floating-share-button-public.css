@@ -268,12 +268,12 @@
 }
 
 .is-large.fsb-delete, .is-large.fsb-modal-close {
-  height: 32px;
-  max-height: 32px;
-  max-width: 32px;
-  min-height: 32px;
-  min-width: 32px;
-  width: 32px;
+    height: 40px;
+    max-height: 40px;
+    max-width: 40px;
+    min-height: 40px;
+    min-width: 40px;
+    width: 40px;
 }
 
 .fsb-modal, .fsb-modal-background, .is-overlay, .hero-video {
