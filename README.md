@@ -55,9 +55,10 @@ Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://githu
 
 ## Changelog
 
-### 1.3.0 (March 2022)
+### 1.3.1 (March 2022)
 
 * Add background hover color settings
+* Fix footer link to plugin page on wordpress.org
 
 ### 1.2.0 (March 2022)
 
