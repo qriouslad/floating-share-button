@@ -132,7 +132,7 @@ class Floating_Share_Button_Admin {
 				'show_form_warning' => false,
 				'save_defaults'		=> true,
 				'show_footer' 		=> false,
-				'footer_credit'		=> '<a href="https://wordpress.org/plugins/flexible-scroll-top/" target="_blank">Floating Share Button</a> (<a href="https://github.com/qriouslad/floating-share-button" target="_blank">github</a>) is built with the <a href="https://github.com/devinvinson/WordPress-Plugin-Boilerplate/" target="_blank">WordPress Plugin Boilerplate</a>, <a href="https://wppb.me" target="_blank">wppb.me</a>, <a href="https://github.com/Codestar/codestar-framework" target="_blank">CodeStar</a>, <a href="https://github.com/CodyHouse/codyhouse-framework" target="_blank">CodyFrame</a>, <a href="https://bulma.io/" target="_blank">bulma</a> and <a href="https://www.iconfinder.com/" target="_blank">IconFinder</a> icons.',
+				'footer_credit'		=> '<a href="https://wordpress.org/plugins/floating-share-button/" target="_blank">Floating Share Button</a> (<a href="https://github.com/qriouslad/floating-share-button" target="_blank">github</a>) is built with the <a href="https://github.com/devinvinson/WordPress-Plugin-Boilerplate/" target="_blank">WordPress Plugin Boilerplate</a>, <a href="https://wppb.me" target="_blank">wppb.me</a>, <a href="https://github.com/Codestar/codestar-framework" target="_blank">CodeStar</a>, <a href="https://github.com/CodyHouse/codyhouse-framework" target="_blank">CodyFrame</a>, <a href="https://bulma.io/" target="_blank">bulma</a> and <a href="https://www.iconfinder.com/" target="_blank">IconFinder</a> icons.',
 			) );
 
 			// Create Button Options section
