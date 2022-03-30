@@ -556,7 +556,7 @@ class Floating_Share_Button_Public {
 				$qrcode_options = new QROptions( array(
 					'eccLevel'		=> QRCode::ECC_L,
 					'outputType'	=> QRCode::OUTPUT_MARKUP_SVG,
-					'version'		=> 5,
+					'version'		=> 8,
 				) );
 
 				$qrcode_img_data = ( new QRCode($qrcode_options))->render( $permalink );
