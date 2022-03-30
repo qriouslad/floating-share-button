@@ -190,14 +190,17 @@ class Floating_Share_Button_Public {
 
 		if ( $color_scheme == 'dark' ) {
 			$background_color = '#000000';
+			$background_hover_color = '#000000';
 			$icon_color = '#ffffff';
 			$border_color = '#ffffff';
 		} elseif ( $color_scheme == 'light' ) {
 			$background_color = '#ffffff';
+			$background_hover_color = '#ffffff';
 			$icon_color = '#000000';
 			$border_color = '#000000';
 		} elseif ( $color_scheme == 'custom' ) {
 			$background_color = $options['fsb_button']['background_color'];
+			$background_hover_color = $options['fsb_button']['background_hover_color'];
 			$icon_color = $options['fsb_button']['icon_color'];
 			$border_color = $options['fsb_button']['border_color'];
 		} else {}
@@ -424,6 +427,7 @@ class Floating_Share_Button_Public {
 					--fsb-corner-spacing: '.esc_attr( $corner_spacing_numeric ).'px;
 					--fsb-icon-size: '.esc_attr( $size_numeric ).'px;
 					--fsb-background-color: '.esc_attr( $background_color ).';
+					--fsb-background-hover-color: '.esc_attr( $background_hover_color ).';
 					--fsb-icon-color: '.esc_attr( $icon_color ).';
 					--fsb-border-color: '.esc_attr( $border_color ).';
 					--fsb-button-opacity: '.esc_attr( $opacity ).'; 
@@ -436,6 +440,10 @@ class Floating_Share_Button_Public {
 					padding: 8px;
 					background: var(--fsb-background-color);
 					border: 0;
+				}
+
+				.floating-share:hover {
+					background: var(--fsb-background-hover-color);
 				}
 
 				.floating-share svg {
