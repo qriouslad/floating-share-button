@@ -268,6 +268,10 @@ class Floating_Share_Button_Public {
 		$sharesheet_padding = 40; // pixels
 		$sharesheet_width = ( $destination_box_width * $destinations_per_row ) + ( ( $destinations_per_row -1 ) * $destination_box_gap_width ) + ( $sharesheet_padding * 2 ); // pixels
 
+        // Sharesheet color scheme
+		
+		$sharesheet_color_scheme = $options['fsb_destinations']['sharesheet_color_scheme'];
+
         // Get post permalink, title and featured image
 
         $post_url = urlencode( get_the_permalink() );
@@ -535,7 +539,7 @@ class Floating_Share_Button_Public {
 
 	        // Sharesheet modal top part
 			echo '
-				<div class="fsb-modal">
+				<div class="fsb-modal fsb-modal-' . esc_html( $sharesheet_color_scheme ) . '">
 					<div class="fsb-modal-background"></div>
 					<div class="fsb-modal-card">
 						<section class="fsb-modal-card-body">

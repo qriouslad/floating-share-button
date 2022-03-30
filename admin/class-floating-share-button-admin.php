@@ -494,6 +494,16 @@ class Floating_Share_Button_Admin {
 										),
 										'default'	=> '6',
 									),
+									array(
+										'id' 		=> 'sharesheet_color_scheme',
+										'type' 		=> 'button_set',
+										'title' 	=> 'Color Scheme',
+										'options'	=> array(
+											'dark'		=> 'Dark',
+											'light'		=> 'Light',
+										),
+										'default'	=> 'dark',
+									),
 								),
 							),
 							array(

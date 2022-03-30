@@ -45,6 +45,11 @@
     font-size: 1em;
 }
 
+.fsb-modal-light .fsb-modal-card h3,
+.fsb-modal-light .fsb-modal-card h4 {
+    color:  #333333;
+}
+
 .fsb-modal-card h4 {
     margin-top: 0;
     margin-bottom: 0.5em;
@@ -58,6 +63,11 @@
     background-size: 200% 200%;
     animation:  gradient 15s ease infinite; */
 }
+
+.fsb-modal-light .fsb-modal-card-body {
+    background-image: linear-gradient(to right top, #d5d5d5, #eeeeee, #f5f5f5);
+}
+
 
 /* @keyframes gradient {
     0% {
@@ -124,6 +134,10 @@
     color: #999;
 }
 
+.fsb-modal-light .destination-box span {
+    color:  #666;
+}
+
 .destination-box.facebook svg { background: #3b5998; }
 .destination-box.twitter svg { background: #1da1f2; }
 .destination-box.linkedin svg { background: #0a66c2; }
@@ -179,12 +193,30 @@
 }
 
 .fsb-modal-close:hover {
-    background: #fff !important;
+    background: #fff !important
 }
 
 .fsb-modal-close:hover::before, 
 .fsb-modal-close:hover::after {
     background-color: #000 !important;
+}
+
+.fsb-modal-light .fsb-modal-close {
+    color: #333;
+}
+
+.fsb-modal-light .fsb-modal-close::before, 
+.fsb-modal-light .fsb-modal-close::after {
+    background-color: #333 !important;
+}
+
+.fsb-modal-light .fsb-modal-close:hover {
+    background: #333 !important;
+}
+
+.fsb-modal-light .fsb-modal-close:hover::before, 
+.fsb-modal-light .fsb-modal-close:hover::after {
+    background-color: #fff !important;
 }
 
 /* Bulma CSS - trimmed down | https://bulma.io*/
