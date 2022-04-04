@@ -11,6 +11,11 @@
     cursor:  pointer;
 }
 
+.fsb {
+    position: relative;
+    z-index: 999;
+}
+
 .fsb .floating-share {
     visibility: hidden;
     opacity: 0;
