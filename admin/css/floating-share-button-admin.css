@@ -20,6 +20,10 @@
     box-shadow: none;
 }
 
+.fsb-options .csf-field-image_select .csf--image {
+    display: content-box;
+}
+
 .fsb-options .csf-field-image_select.icon-style img {
     width: 44px;
     height:  44px;
