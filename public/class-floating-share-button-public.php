@@ -177,6 +177,8 @@ class Floating_Share_Button_Public {
 			$corner_spacing_numeric = 20;
 		} elseif ( $corner_spacing == 'large' ) {
 			$corner_spacing_numeric = 28;
+		} elseif ( $corner_spacing == 'custom' ) {
+			$corner_spacing_numeric = $options['fsb_button']['corner_spacing_distance'];
 		} else {}
 
 		$border = $options['fsb_button']['border'];
