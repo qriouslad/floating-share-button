@@ -306,6 +306,7 @@
 }
 
 .is-large.fsb-delete, .is-large.fsb-modal-close {
+    padding: 10px 20px;
     height: 40px;
     max-height: 40px;
     max-width: 40px;
