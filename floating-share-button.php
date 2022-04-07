@@ -16,7 +16,7 @@
  * Plugin Name:       Floating Share Button
  * Plugin URI:        https://github.com/qriouslad/floating-share-button
  * Description:       Lightweight floating share button with responsive desktop sharesheet and native iOS and Android sharesheet.
- * Version:           1.5.0
+ * Version:           1.5.1
  * Author:            Bowo
  * Author URI:        https://bowo.io
  * License:           GPL-2.0+
@@ -35,7 +35,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Start at version 1.0.0 and use SemVer - https://semver.org
  * Rename this for your plugin and update it as you release new versions.
  */
-define( 'FLOATING_SHARE_BUTTON_VERSION', '1.5.0' );
+define( 'FLOATING_SHARE_BUTTON_VERSION', '1.5.1' );
 
 /**
  * The code that runs during plugin activation.

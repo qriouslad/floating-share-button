@@ -11,10 +11,6 @@
     cursor:  pointer;
 }
 
-.fsb-options .csf-field-image_select .csf--image {
-    display: content-box;
-}
-
 .fsb {
     position: relative;
     z-index: 999;
