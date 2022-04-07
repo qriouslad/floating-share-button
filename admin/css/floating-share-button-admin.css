@@ -21,7 +21,7 @@
 }
 
 .fsb-options .csf-field-image_select .csf--image {
-    display: content-box;
+    box-sizing: content-box;
 }
 
 .fsb-options .csf-field-image_select.icon-style img {
