@@ -11,6 +11,10 @@
     cursor:  pointer;
 }
 
+.fsb-options .csf-field-image_select .csf--image {
+    display: content-box;
+}
+
 .fsb {
     position: relative;
     z-index: 999;
@@ -21,6 +25,7 @@
     opacity: 0;
     transition: opacity 0.3s, visibility 0.3s, background-color 0.3s;
 }
+
 .fsb .floating-share--is-visible {
     visibility: visible;
     opacity: 1;
