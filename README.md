@@ -4,8 +4,8 @@ Contributors: qriouslad
 Donate link: https://paypal.me/qriouslad
 Tags: share button, floating share, scriptless share, web share api, native mobile share, ios android share  
 Requires at least: 5.0  
-Tested up to: 5.9.2  
-Stable tag: 1.6.1  
+Tested up to: 6.0  
+Stable tag: 1.6.2  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -15,20 +15,32 @@ Lightweight floating share button with responsive desktop sharesheet and native 
 
 ## Description
 
-This plugin enables a floating share button that triggers a responsive, customizable sharesheet on desktop devices and the native iOS or Android sharesheet on mobile devices using the [Web Share API](https://web.dev/web-share/).
+This plugin enables a customizable, floating share button that triggers a responsive, customizable sharesheet on desktop devices and the native iOS or Android sharesheet on mobile devices using the [Web Share API](https://web.dev/web-share/).
 
 ### Features
 
-* Lightweight. Minimal CSS and JS on the frontend with no jQuery dependency. Uses SVG icons. Very very minimal impact on website load time.
-* Supports 33 of the most popular sharing destinations, including social networks, chat apps, email apps, social bookmarking sites, etc.
-* The appearance of the floating button can be customized to match the design of your website.
+* Supports 33 of the most popular sharing destinations (complete list below). Can be customized to show only destinations you choose.
+* Uses SVG icon which looks sharp at any size and screen resolution
+* Easily understandable and visual options to customize the button's appearance
+* Customize when and how the button appears or disappears with screen scrolling progression
+* Can be shown/hidden on either/both desktop and mobile views
+* Lightweight. Minimal CSS and JS on the frontend with no jQuery dependency
 * Great tandem with the [Flexible Scroll Top](https://wordpress.org/plugins/flexible-scroll-top/) plugin. Works beatifully on both desktop and mobile devices, especially if you are looking for a minimalist approach.
+
+### Supported Sharing Destinations
+
+* Social networks: Facebook, Twitter, LinkedIn, Pinterest, Snapchat, VK, QZone, Weibo, Mixi
+* Chat apps: Whatsapp, Telegram, Messenger, Skype, WeChat, Line, Viber, QQ
+* Email apps: Gmail, Ymail (Yahoo Mail), Outlook, Mail.ru, generic email
+* Others: Tumblr, Reddit, Flipboard, Mix, InstaPaper, Pocket, Hacker News, Google Classroom, Buffer, Evernote, Trello
+* Includes a QR code so people visiting your website on their laptop can easily share it directly from their mobile device
 
 ### Give Back
 
-* [Github repo](https://github.com/qriouslad/floating-share-button) to contribute code.
-* [PayPal.me](https://paypal.me/qriouslad) to fuel my dev work with a supply of milk tea.
 * [A nice review](https://wordpress.org/plugins/floating-share-button/#reviews) would be great!
+* [Give feedback](https://wordpress.org/support/plugin/floating-share-button/) and help improve future versions.
+* [Github repo](https://github.com/qriouslad/floating-share-button) to contribute code.
+* [Donate](https://paypal.me/qriouslad) and support my work.
 
 ## Screenshots
 
@@ -54,6 +66,11 @@ This plugin enables a floating share button that triggers a responsive, customiz
 Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) | [wppb.me](https://wppb.me/) | [CodeStar framework](https://github.com/Codestar/codestar-framework) | [CodyFrame](https://github.com/CodyHouse/codyhouse-framework) | [bulma](https://bulma.io/) | Icons from [IconFinder.com](https://www.iconfinder.com/).
 
 ## Changelog
+
+### 1.6.2 (2022.05.26)
+
+* Tested to be compatible with WordPress 6.0
+* Add review, feedback and donate links in settings page
 
 ### 1.6.1 (April 2022)
 
