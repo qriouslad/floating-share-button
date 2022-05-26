@@ -34,6 +34,7 @@ This plugin enables a customizable, floating share button that triggers a respon
 * Email apps: Gmail, Ymail (Yahoo Mail), Outlook, Mail.ru, generic email
 * Others: Tumblr, Reddit, Flipboard, Mix, InstaPaper, Pocket, Hacker News, Google Classroom, Buffer, Evernote, Trello
 * Includes a QR code so people visiting your website on their laptop can easily share it directly from their mobile device
+* On iOS or Android devices, the button will trigger the native OS sharesheet and can use any sharing destination supported by the OS or device. 
 
 ### Give Back
 
