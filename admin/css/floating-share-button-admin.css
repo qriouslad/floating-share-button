@@ -16,6 +16,14 @@
     font-size: 14px;
 }
 
+.fsb-options .csf-header-inner h1 small a {
+    text-decoration: none;
+}
+
+.fsb-options .csf-header-inner h1 small a:hover {
+    text-decoration: underline;
+}
+
 .fsb-options .csf-field-image_select .csf--active figure {
     box-shadow: none;
 }
