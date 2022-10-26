@@ -169,6 +169,7 @@ class Floating_Share_Button {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'csf_loaded', $plugin_admin, 'add_settings_page' );
 		$this->loader->add_filter( 'plugin_action_links_'.$this->plugin_name.'/'.$this->plugin_name.'.php', $plugin_admin, 'add_settings_link' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'suppress_admin_notices', 5 ); // Load early with priority 5 (default is 10)
 
 	}
 
