@@ -4,8 +4,8 @@ Contributors: qriouslad
 Donate link: https://paypal.me/qriouslad
 Tags: share button, floating share, scriptless share, web share api, native mobile share, ios android share  
 Requires at least: 5.0  
-Tested up to: 6.0  
-Stable tag: 1.6.2  
+Tested up to: 6.0.3  
+Stable tag: 1.7.0  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -67,6 +67,15 @@ This plugin enables a customizable, floating share button that triggers a respon
 Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) | [wppb.me](https://wppb.me/) | [CodeStar framework](https://github.com/Codestar/codestar-framework) | [CodyFrame](https://github.com/CodyHouse/codyhouse-framework) | [bulma](https://bulma.io/) | Icons from [IconFinder.com](https://www.iconfinder.com/).
 
 ## Changelog
+
+### 1.7.0 (2022.10.26)
+
+* [Added] Suppression of all admin notices on the settings page
+* [Changed] Put in place a prefixed CodeStar Framework to avoid collision with other plugins using this library
+* [Changed] Improve settings page header links
+* [Changed] Properly use wp_add_inline_style() to load CSS styles based on plugin settings
+* [Changed] Properly use wp_localize_script() to load javascript code based on plugin settings
+* [Changed] Increase share modal's z-index to make sure it overlays everything on screen
 
 ### 1.6.2 (2022.05.26)
 
