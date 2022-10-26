@@ -108,7 +108,7 @@ class Floating_Share_Button_Admin {
 	 */
 	public function add_settings_page() {
 
-		if ( class_exists( 'CSF' ) ) {
+		if ( class_exists( 'FLSHBU_CSF' ) ) {
 
 			// Set a unique slug-like ID
 
@@ -116,7 +116,7 @@ class Floating_Share_Button_Admin {
 
 			// Create options
 			
-			CSF::createOptions( $prefix, array(
+			FLSHBU_CSF::createOptions( $prefix, array(
 				'menu_title' 		=> 'Floating Share Button',
 				'menu_slug' 		=> 'floating-share-button',
 				'menu_type'			=> 'submenu',
@@ -137,7 +137,7 @@ class Floating_Share_Button_Admin {
 
 			// Create Button Options section
 			
-			CSF::createSection( $prefix, array(
+			FLSHBU_CSF::createSection( $prefix, array(
 				'title'		=> 'Options',
 				'fields'	=> array(
 

@@ -123,12 +123,12 @@ class Floating_Share_Button {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-floating-share-button-public.php';
 
 		/**
-		 * Include CodeStart framework
+		 * Include the prefixed CodeStar Framework
 		 */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/codestar-framework/codestar-framework.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libraries/codestar-flshbu/codestar-framework.php';
 
 		/**
-		 * Include vendor autoload
+		 * Include vendor autoload. Currently loading library for generating QR Code.
 		 */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/autoload.php';
 
