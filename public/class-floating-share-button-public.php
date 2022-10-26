@@ -80,6 +80,202 @@ class Floating_Share_Button_Public {
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/floating-share-button-public.css', array(), $this->version, 'all' );
 
+		// Add inline styles with options selected in plugin settings
+
+		$options = get_option( 'floating_share_button' );
+		$enabled = $options['fsb_button']['enable'];
+
+		if ( $enabled == true ) {
+
+			$size = $options['fsb_button']['size'];
+			if ( $size == 'small' ) {
+				$size_numeric = 16;
+			} elseif ( $size == 'medium' ) {
+				$size_numeric = 24;
+			} elseif ( $size == 'large' ) {
+				$size_numeric = 32;
+			} else {}
+
+			$corner_spacing = $options['fsb_button']['corner_spacing'];
+			if ( $corner_spacing == 'small' ) {
+				$corner_spacing_numeric = 12;
+			} elseif ( $corner_spacing == 'medium' ) {
+				$corner_spacing_numeric = 20;
+			} elseif ( $corner_spacing == 'large' ) {
+				$corner_spacing_numeric = 28;
+			} elseif ( $corner_spacing == 'custom' ) {
+				$corner_spacing_numeric = $options['fsb_button']['corner_spacing_distance'];
+			} else {}
+
+			$color_scheme = $options['fsb_button']['color_scheme'];
+
+			if ( $color_scheme == 'dark' ) {
+				$background_color = '#000000';
+				$background_hover_color = '#000000';
+				$icon_color = '#ffffff';
+				$border_color = '#ffffff';
+			} elseif ( $color_scheme == 'light' ) {
+				$background_color = '#ffffff';
+				$background_hover_color = '#ffffff';
+				$icon_color = '#000000';
+				$border_color = '#000000';
+			} elseif ( $color_scheme == 'custom' ) {
+				$background_color = $options['fsb_button']['background_color'];
+				$background_hover_color = $options['fsb_button']['background_hover_color'];
+				$icon_color = $options['fsb_button']['icon_color'];
+				$border_color = $options['fsb_button']['border_color'];
+			} else {}
+
+			// Show or hide on desktop and mobile
+
+			$show_on_mobile = $options['fsb_button']['show_on_mobile'];
+
+			if ( $show_on_mobile == false ) {
+
+				$show_on_mobile_css = '
+				@media (max-width:800px) {
+					.fsb .floating-share {
+						display: none;
+					}
+				}
+				';
+
+			} else {
+				$show_on_mobile_css = '';
+			}
+
+			$show_on_desktop = $options['fsb_button']['show_on_desktop'];
+
+			if ( $show_on_desktop == false ) {
+
+				$show_on_desktop_css = '
+				@media (min-width:801px) {
+					.fsb .floating-share {
+						display: none;
+					}
+				}
+				';
+
+			} else {
+				$show_on_desktop_css = '';
+			}
+
+			$idle_transparency = $options['fsb_button']['idle_transparency'];
+			$opacity = 1 - ( $idle_transparency / 100);
+
+			// Destinations per row >> Width of sharesheet
+
+			$destinations_per_row = $options['fsb_destinations']['destinations_per_row'];
+			$destination_box_width = 56; // pixels
+			$destination_box_gap_width = 8; // pixels
+			$sharesheet_padding = 40; // pixels
+			$sharesheet_width = ( $destination_box_width * $destinations_per_row ) + ( ( $destinations_per_row -1 ) * $destination_box_gap_width ) + ( $sharesheet_padding * 2 ); // pixels
+
+	        // Custom styles
+
+			$styles = '
+
+				:root {
+					--fsb-corner-spacing: '.esc_attr( $corner_spacing_numeric ).'px;
+					--fsb-icon-size: '.esc_attr( $size_numeric ).'px;
+					--fsb-background-color: '.esc_attr( $background_color ).';
+					--fsb-background-hover-color: '.esc_attr( $background_hover_color ).';
+					--fsb-icon-color: '.esc_attr( $icon_color ).';
+					--fsb-border-color: '.esc_attr( $border_color ).';
+					--fsb-button-opacity: '.esc_attr( $opacity ).'; 
+				}
+
+				.floating-share {
+					display: flex;
+					align-items: center;
+					justify-content: center;
+					padding: 8px;
+					background: var(--fsb-background-color);
+					border: 0;
+				}
+
+				.floating-share:hover {
+					background: var(--fsb-background-hover-color);
+				}
+
+				.floating-share svg {
+					width: var(--fsb-icon-size);
+					height: var(--fsb-icon-size);
+					fill: var(--fsb-icon-color);
+				}
+
+				.floating-share svg.fsb-share11, 
+				.floating-share svg.fsb-share12 {
+					stroke: var(--fsb-icon-color);
+				}
+
+				.floating-share svg path {
+					fill: var(--fsb-icon-color);
+				}
+
+				.floating-share svg.fsb-share13 {
+					fill: none;
+				}
+
+				.floating-share svg.fsb-share12 path,
+				.floating-share svg.fsb-share13 path {
+					fill: none;
+				}
+
+				.floating-share svg.fsb-share13 path:last-child {
+					fill: var(--fsb-icon-color);
+				}
+
+				.floating-share.right-side {
+					bottom: var(--fsb-corner-spacing);
+					right: var(--fsb-corner-spacing);
+				}
+
+				.floating-share.left-side {
+					bottom: var(--fsb-corner-spacing);
+					left: var(--fsb-corner-spacing);
+				}
+
+				.floating-share.style-rounded {
+					border-radius: 4px;
+				}
+
+				.floating-share.style-square {
+					border-radius: 0;
+				}
+
+				.floating-share.style-circle {
+					border-radius: 1000px;
+				}
+
+				.floating-share.has-border {
+					border: 1px solid var(--fsb-border-color);
+				}
+
+				.fsb .floating-share--fade-out {
+				    opacity: var(--fsb-button-opacity);
+				}
+
+				'.$show_on_desktop_css.'
+
+				'.$show_on_mobile_css.'
+
+				/* Sharesheet */
+
+				@media screen and (min-width: 769px) {
+					.fsb-modal-content,
+					.fsb-modal-card {
+						width: '.esc_attr( $sharesheet_width ).'px;
+					}
+				}
+
+			';
+
+			// Add styles inline
+			wp_add_inline_style( $this->plugin_name, $styles );
+
+		}
+
 	}
 
 	/**
@@ -103,6 +299,54 @@ class Floating_Share_Button_Public {
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/floating-share-button-public.js', array( 'jquery' ), $this->version, false );
 
+		// Pass on variables to script
+
+		$options = get_option( 'floating_share_button' );
+		$enabled = $options['fsb_button']['enable'];
+
+		$position_class = $options['fsb_button']['position'].'-side';
+		$style_class = 'style-'.$options['fsb_button']['style'];
+
+		$border = $options['fsb_button']['border'];
+		if ( $border == true ) {
+			$border_class = 'has-border';
+		} else {
+			$border_class = 'no-border';			
+		}
+
+		// Sharesheet type by device
+        if ( wp_is_mobile() ) {
+        	$device = 'mobile';
+        } else {
+        	$device = 'desktop';
+        }
+
+		$color_scheme = $options['fsb_button']['color_scheme'];
+		$color_scheme_class = 'color-'.$options['fsb_button']['color_scheme'];
+
+		// Behaviour Tab
+		$offset_show = $options['fsb_button']['offset_show'];
+		$offset_fade = $options['fsb_button']['offset_fade'];
+
+        $post_title = urlencode( get_the_title() );
+        $post_url = urlencode( get_the_permalink() );
+
+		wp_localize_script(
+			$this->plugin_name,
+			'fsbVars',
+			array(
+				'fsbPositionClass' => $position_class,
+				'fsbStyleClass' => $style_class,
+				'fsbBorderClass' => $border_class,
+				'fsbColorSchemeClass' => $color_scheme_class,
+				'fsbOffset' => $offset_show,
+				'fsbOffsetOpacity' => $offset_fade,
+				'fsbDevice' => $device,
+				'fsbPostTitle' => $post_title,
+				'fsbPostUrl' => $post_url,
+			)
+		);
+
 	}
 
 	/**
@@ -114,11 +358,7 @@ class Floating_Share_Button_Public {
 	public function activate_button() {
 
 		$options = get_option( 'floating_share_button' );
-
-		// Main Tab
 		$enabled = $options['fsb_button']['enable'];
-		$position_class = $options['fsb_button']['position'].'-side';
-		$style_class = 'style-'.$options['fsb_button']['style'];
 
 		// Appearance Tab
 		$icon = $options['fsb_button']['icon'];
@@ -160,115 +400,6 @@ class Floating_Share_Button_Public {
 				break;
 
 		}
-
-		$size = $options['fsb_button']['size'];
-		if ( $size == 'small' ) {
-			$size_numeric = 16;
-		} elseif ( $size == 'medium' ) {
-			$size_numeric = 24;
-		} elseif ( $size == 'large' ) {
-			$size_numeric = 32;
-		} else {}
-
-		$corner_spacing = $options['fsb_button']['corner_spacing'];
-		if ( $corner_spacing == 'small' ) {
-			$corner_spacing_numeric = 12;
-		} elseif ( $corner_spacing == 'medium' ) {
-			$corner_spacing_numeric = 20;
-		} elseif ( $corner_spacing == 'large' ) {
-			$corner_spacing_numeric = 28;
-		} elseif ( $corner_spacing == 'custom' ) {
-			$corner_spacing_numeric = $options['fsb_button']['corner_spacing_distance'];
-		} else {}
-
-		$border = $options['fsb_button']['border'];
-		if ( $border == true ) {
-			$border_class = 'has-border';
-		} else {
-			$border_class = 'no-border';			
-		}
-
-		$color_scheme = $options['fsb_button']['color_scheme'];
-
-		if ( $color_scheme == 'dark' ) {
-			$background_color = '#000000';
-			$background_hover_color = '#000000';
-			$icon_color = '#ffffff';
-			$border_color = '#ffffff';
-		} elseif ( $color_scheme == 'light' ) {
-			$background_color = '#ffffff';
-			$background_hover_color = '#ffffff';
-			$icon_color = '#000000';
-			$border_color = '#000000';
-		} elseif ( $color_scheme == 'custom' ) {
-			$background_color = $options['fsb_button']['background_color'];
-			$background_hover_color = $options['fsb_button']['background_hover_color'];
-			$icon_color = $options['fsb_button']['icon_color'];
-			$border_color = $options['fsb_button']['border_color'];
-		} else {}
-
-		$color_scheme_class = 'color-'.$options['fsb_button']['color_scheme'];
-
-		// Behaviour Tab
-		$offset_show = $options['fsb_button']['offset_show'];
-		$offset_fade = $options['fsb_button']['offset_fade'];
-
-		$idle_transparency = $options['fsb_button']['idle_transparency'];
-		$opacity = 1 - ( $idle_transparency / 100);
-
-		// Show or hide on desktop and mobile
-
-		$show_on_mobile = $options['fsb_button']['show_on_mobile'];
-
-		if ( $show_on_mobile == false ) {
-
-			$show_on_mobile_css = '
-			@media (max-width:800px) {
-				.fsb .floating-share {
-					display: none;
-				}
-			}
-			';
-
-		} else {
-			$show_on_mobile_css = '';
-		}
-
-		$show_on_desktop = $options['fsb_button']['show_on_desktop'];
-
-		if ( $show_on_desktop == false ) {
-
-			$show_on_desktop_css = '
-			@media (min-width:801px) {
-				.fsb .floating-share {
-					display: none;
-				}
-			}
-			';
-
-		} else {
-			$show_on_desktop_css = '';
-		}
-
-		// Sharesheet
-
-        if ( wp_is_mobile() ) {
-
-        	$device = 'mobile';
-
-        } else {
-
-        	$device = 'desktop';
-
-        }
-
-		// Destinations per row >> Width of sharesheet
-
-		$destinations_per_row = $options['fsb_destinations']['destinations_per_row'];
-		$destination_box_width = 56; // pixels
-		$destination_box_gap_width = 8; // pixels
-		$sharesheet_padding = 40; // pixels
-		$sharesheet_width = ( $destination_box_width * $destinations_per_row ) + ( ( $destinations_per_row -1 ) * $destination_box_gap_width ) + ( $sharesheet_padding * 2 ); // pixels
 
         // Sharesheet color scheme
 		
@@ -424,109 +555,6 @@ class Floating_Share_Button_Public {
         // Output button, sharesheet and styles if functionality is enabled
 
 		if ( $enabled == true ) {
-
-	        // Custom styles
-
-			$styles = '
-
-				:root {
-					--fsb-corner-spacing: '.esc_attr( $corner_spacing_numeric ).'px;
-					--fsb-icon-size: '.esc_attr( $size_numeric ).'px;
-					--fsb-background-color: '.esc_attr( $background_color ).';
-					--fsb-background-hover-color: '.esc_attr( $background_hover_color ).';
-					--fsb-icon-color: '.esc_attr( $icon_color ).';
-					--fsb-border-color: '.esc_attr( $border_color ).';
-					--fsb-button-opacity: '.esc_attr( $opacity ).'; 
-				}
-
-				.floating-share {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					padding: 8px;
-					background: var(--fsb-background-color);
-					border: 0;
-				}
-
-				.floating-share:hover {
-					background: var(--fsb-background-hover-color);
-				}
-
-				.floating-share svg {
-					width: var(--fsb-icon-size);
-					height: var(--fsb-icon-size);
-					fill: var(--fsb-icon-color);
-				}
-
-				.floating-share svg.fsb-share11, 
-				.floating-share svg.fsb-share12 {
-					stroke: var(--fsb-icon-color);
-				}
-
-				.floating-share svg path {
-					fill: var(--fsb-icon-color);
-				}
-
-				.floating-share svg.fsb-share13 {
-					fill: none;
-				}
-
-				.floating-share svg.fsb-share12 path,
-				.floating-share svg.fsb-share13 path {
-					fill: none;
-				}
-
-				.floating-share svg.fsb-share13 path:last-child {
-					fill: var(--fsb-icon-color);
-				}
-
-				.floating-share.right-side {
-					bottom: var(--fsb-corner-spacing);
-					right: var(--fsb-corner-spacing);
-				}
-
-				.floating-share.left-side {
-					bottom: var(--fsb-corner-spacing);
-					left: var(--fsb-corner-spacing);
-				}
-
-				.floating-share.style-rounded {
-					border-radius: 4px;
-				}
-
-				.floating-share.style-square {
-					border-radius: 0;
-				}
-
-				.floating-share.style-circle {
-					border-radius: 1000px;
-				}
-
-				.floating-share.has-border {
-					border: 1px solid var(--fsb-border-color);
-				}
-
-				.fsb .floating-share--fade-out {
-				    opacity: var(--fsb-button-opacity);
-				}
-
-				'.$show_on_desktop_css.'
-
-				'.$show_on_mobile_css.'
-
-				/* Sharesheet */
-
-				@media screen and (min-width: 769px) {
-					.fsb-modal-content,
-					.fsb-modal-card {
-						width: '.esc_attr( $sharesheet_width ).'px;
-					}
-				}
-
-			';
-
-			// Remove line breaks so it does not cause error during script execution
-			$styles = preg_replace( "/\r|\n/", "", $styles );
 
 			// Output the share button
 
@@ -851,110 +879,6 @@ class Floating_Share_Button_Public {
 						<button class="fsb-modal-close is-large"></button>
 					</div>
 				</div>
-			';
-
-			// Output the script to trigger sharesheet display
-
-			echo '
-				<script id="floating-share-button">
-
-					// Set button behaviour
-				    // Based on main.js from https://github.com/CodyHouse/back-to-top
-
-					var fsbButton = document.getElementsByClassName("fsb-button")[0],
-						floatingShareVisibleClass = "floating-share--is-visible";
-						floatingShareFadeOutClass = "floating-share--fade-out";
-						fsbPositionClass = "'.esc_attr( $position_class ).'",
-						fsbStyleClass = "'.esc_attr( $style_class ).'",
-						fsbBorderClass = "'.esc_attr( $border_class ).'",
-						fsbColorSchemeClass = "'.esc_attr( $color_scheme_class ).'",
-						fsbOffset = '.esc_attr( $offset_show ).',
-						fsbOffsetOpacity = '.esc_attr( $offset_fade ).',
-						fsbScrolling = false,
-						fsbDevice = "'.esc_attr( $device ).'",
-						shareModal = document.querySelector(".fsb-modal"),
-						shareModalBg = document.querySelector(".fsb-modal-background"),
-						shareSheet = document.querySelector(".fsb-modal-content"),
-						closeButton = document.querySelector(".fsb-modal-close");
-
-					fsbUtil.addClass(fsbButton, fsbPositionClass +" "+ fsbStyleClass +" "+ fsbBorderClass +" "+ fsbColorSchemeClass);
-
-					// Add HTML <styles> block for custom styles
-
-					var fsbStyles = "<style id=\"floating-share-button\">'.esc_attr( $styles ).'</style>";
-
-					window.addEventListener("load",function(event) {
-						document.head.insertAdjacentHTML("beforeend", fsbStyles);
-					},false);
-
-					// Define scroll behaviour
-
-					if ( fsbButton ) {
-						//update back to top visibility on scrolling
-						window.addEventListener("scroll", function(event) {
-							if( !fsbScrolling ) {
-								fsbScrolling = true;
-								(!window.requestAnimationFrame) ? setTimeout(checkBackfloatingShare, 250) : window.requestAnimationFrame(checkBackfloatingShare);
-							}
-						});
-
-					}
-
-					function checkBackfloatingShare() {
-						var windowTop = window.scrollY || document.documentElement.scrollTop;
-
-						if ( windowTop > fsbOffset ) {
-							fsbUtil.addClass(fsbButton, floatingShareVisibleClass)
-						} else {
-							fsbUtil.removeClass(fsbButton, floatingShareVisibleClass + " " + floatingShareFadeOutClass)
-						}
-
-						if ( windowTop > fsbOffsetOpacity ) {
-							fsbUtil.addClass(fsbButton, floatingShareFadeOutClass)
-						}
-
-						fsbScrolling = false;
-					}
-
-					// Define sharesheet behaviour. Reference: https://css-tricks.com/how-to-use-the-web-share-api/
-
-					fsbButton.addEventListener("click", event => {
-
-						if ( fsbDevice == "mobile" ) {
-
-							if (navigator.share) { 
-								navigator.share({
-									title: "'.esc_attr( urldecode( $post_title ) ).'",
-									url: "'.esc_attr( $post_url ).'"
-								}).then(() => {
-									console.log("Thanks for sharing!");
-								})
-								.catch(console.error);
-							}					
-
-						} else if ( fsbDevice == "desktop" ) {
-
-							shareModal.classList.add("is-active");
-							console.log("This should show desktop sharesheet");
-
-						}
-
-					});
-
-					shareModalBg.addEventListener("click", event => {
-						
-						shareModal.classList.remove("is-active");
-
-					});
-
-					closeButton.addEventListener("click", event => {
-						
-						shareModal.classList.remove("is-active");
-
-					});
-
-
-				</script>
 			';
 
 		}

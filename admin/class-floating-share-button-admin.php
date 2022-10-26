@@ -108,7 +108,7 @@ class Floating_Share_Button_Admin {
 	 */
 	public function add_settings_page() {
 
-		if ( class_exists( 'CSF' ) ) {
+		if ( class_exists( 'FLSHBU_CSF' ) ) {
 
 			// Set a unique slug-like ID
 
@@ -116,14 +116,14 @@ class Floating_Share_Button_Admin {
 
 			// Create options
 			
-			CSF::createOptions( $prefix, array(
+			FLSHBU_CSF::createOptions( $prefix, array(
 				'menu_title' 		=> 'Floating Share Button',
 				'menu_slug' 		=> 'floating-share-button',
 				'menu_type'			=> 'submenu',
 				'menu_parent'		=> 'options-general.php',
 				'menu_position'		=> 100,
 				// 'menu_icon'			=> 'dashicons-arrow-up-alt2',
-				'framework_title' 	=> 'Floating Share Button <small>by <a href="https://bowo.io" target="_blank">bowo.io</a> | <a href="https://wordpress.org/plugins/floating-share-button/#reviews" target="_blank" class="header-action">Review</a> &bull; <a href="https://wordpress.org/support/plugin/floating-share-button/" target="_blank" class="header-action">Feedback</a> &bull; <a href="https://paypal.me/qriouslad" target="_blank" class="header-action">Donate</a></small>',
+				'framework_title' 	=> 'Floating Share Button <small>by <a href="https://bowo.io" target="_blank">bowo.io</a> <a href="https://wordpress.org/plugins/floating-share-button/" target="_blank" class="fsb-header-action"><span>&#8505;</span> Info</a><a href="https://wordpress.org/plugins/floating-share-button/#reviews" target="_blank" class="fsb-header-action"><span>&starf;</span> Review</a><a href="https://wordpress.org/support/plugin/floating-share-button/" target="_blank" class="fsb-header-action">&#10010; Feedback</a><a href="https://paypal.me/qriouslad" target="_blank" class="fsb-header-action">&#9829; Donate</a></small>',
 				'framework_class' 	=> 'fsb-options',
 				'show_bar_menu' 	=> false,
 				'show_search' 		=> false,
@@ -137,7 +137,7 @@ class Floating_Share_Button_Admin {
 
 			// Create Button Options section
 			
-			CSF::createSection( $prefix, array(
+			FLSHBU_CSF::createSection( $prefix, array(
 				'title'		=> 'Options',
 				'fields'	=> array(
 
@@ -553,6 +553,23 @@ class Floating_Share_Button_Admin {
 		array_unshift($links, $settings_link); 
 
 		return $links; 
+
+	}
+
+	/**
+	 * Suppress all admin notices in the plugin's main page.
+	 *
+	 * @hooked admin_notices
+	 *
+	 * @since 1.7.1
+	 */
+	public function suppress_admin_notices() {
+
+		global $plugin_page;
+
+		if ( $this->plugin_name === $plugin_page ) {
+			remove_all_actions( 'admin_notices' );
+		}
 
 	}
 

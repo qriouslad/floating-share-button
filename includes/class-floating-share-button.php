@@ -123,12 +123,12 @@ class Floating_Share_Button {
 		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-floating-share-button-public.php';
 
 		/**
-		 * Include CodeStart framework
+		 * Include the prefixed CodeStar Framework
 		 */
-        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/codestar-framework/codestar-framework.php';
+        require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/libraries/codestar-flshbu/codestar-framework.php';
 
 		/**
-		 * Include vendor autoload
+		 * Include vendor autoload. Currently loading library for generating QR Code.
 		 */
         require_once plugin_dir_path( dirname( __FILE__ ) ) . 'vendor/autoload.php';
 
@@ -169,6 +169,7 @@ class Floating_Share_Button {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'csf_loaded', $plugin_admin, 'add_settings_page' );
 		$this->loader->add_filter( 'plugin_action_links_'.$this->plugin_name.'/'.$this->plugin_name.'.php', $plugin_admin, 'add_settings_link' );
+		$this->loader->add_action( 'admin_notices', $plugin_admin, 'suppress_admin_notices', 5 ); // Load early with priority 5 (default is 10)
 
 	}
 
