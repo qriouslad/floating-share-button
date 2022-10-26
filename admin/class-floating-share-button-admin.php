@@ -123,7 +123,7 @@ class Floating_Share_Button_Admin {
 				'menu_parent'		=> 'options-general.php',
 				'menu_position'		=> 100,
 				// 'menu_icon'			=> 'dashicons-arrow-up-alt2',
-				'framework_title' 	=> 'Floating Share Button <small>by <a href="https://bowo.io" target="_blank">bowo.io</a> | <a href="https://wordpress.org/plugins/floating-share-button/#reviews" target="_blank" class="header-action">Review</a> &bull; <a href="https://wordpress.org/support/plugin/floating-share-button/" target="_blank" class="header-action">Feedback</a> &bull; <a href="https://paypal.me/qriouslad" target="_blank" class="header-action">Donate</a></small>',
+				'framework_title' 	=> 'Floating Share Button <small>by <a href="https://bowo.io" target="_blank">bowo.io</a> <a href="https://wordpress.org/plugins/floating-share-button/" target="_blank" class="fsb-header-action"><span>&#8505;</span> Info</a><a href="https://wordpress.org/plugins/floating-share-button/#reviews" target="_blank" class="fsb-header-action"><span>&starf;</span> Review</a><a href="https://wordpress.org/support/plugin/floating-share-button/" target="_blank" class="fsb-header-action">&#10010; Feedback</a><a href="https://paypal.me/qriouslad" target="_blank" class="fsb-header-action">&#9829; Donate</a></small>',
 				'framework_class' 	=> 'fsb-options',
 				'show_bar_menu' 	=> false,
 				'show_search' 		=> false,

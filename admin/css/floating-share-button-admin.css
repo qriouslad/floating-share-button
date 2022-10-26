@@ -17,10 +17,26 @@
 }
 
 .fsb-options .csf-header-inner h1 small a {
+    font-weight: normal;
     text-decoration: none;
 }
 
 .fsb-options .csf-header-inner h1 small a:hover {
+    text-decoration: underline;
+}
+
+.fsb-header-action {
+    margin-left: 16px;
+    text-decoration: none;
+    transition: .25s;
+    line-height: 30px;
+}
+
+.fsb-header-action:first-child {
+    margin-left: 0;
+}
+
+.fsb-header-action:hover {
     text-decoration: underline;
 }
 
