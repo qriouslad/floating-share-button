@@ -123,8 +123,8 @@
 
 				if (navigator.share) { 
 					navigator.share({
-						title: "'.esc_attr( urldecode( $post_title ) ).'",
-						url: "'.esc_attr( $post_url ).'"
+						title: document.title,
+						url: window.location.href
 					}).then(() => {
 						console.log("Thanks for sharing!");
 					})
