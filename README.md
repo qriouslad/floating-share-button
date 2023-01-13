@@ -4,8 +4,8 @@ Contributors: qriouslad
 Donate link: https://paypal.me/qriouslad
 Tags: share button, floating share, scriptless share, web share api, native mobile share, ios android share  
 Requires at least: 5.0  
-Tested up to: 6.0.3  
-Stable tag: 1.7.0  
+Tested up to: 6.1.1  
+Stable tag: 1.7.1  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -43,6 +43,15 @@ This plugin enables a customizable, floating share button that triggers a respon
 * [Github repo](https://github.com/qriouslad/floating-share-button) to contribute code.
 * [Donate](https://paypal.me/qriouslad) and support my work.
 
+### Check These Out Too
+
+* [Admin and Site Enhancements](https://wordpress.org/plugins/admin-site-enhancements/) helps you to easily enhance various admin workflows and site aspects while replacing multiple plugins doing it.
+* [System Dashboard](https://wordpress.org/plugins/system-dashboard/): Central dashboard to monitor various WordPress components, processes and data, including the server.
+* [Debug Log Manager](https://wordpress.org/plugins/debug-log-manager/): Log PHP, database and JavaScript errors via WP_DEBUG with one click. Conveniently create, view, filter and clear the debug.log file.
+* [Variable Inspector](https://wordpress.org/plugins/variable-inspector/): Inspect PHP variables on a central dashboard in wp-admin for convenient debugging.
+* [Code Explorer](https://wordpress.org/plugins/code-explorer/): Fast directory explorer and file/code viewer with syntax highlighting.
+* [Database Admin](https://github.com/qriouslad/database-admin): Securely manage your WordPress website's database with a clean and user-friendly interface based on a custom-themed Adminer app. Only available on Github.
+
 ## Screenshots
 
 1. The default floating share button  
@@ -67,6 +76,10 @@ This plugin enables a customizable, floating share button that triggers a respon
 Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://github.com/devinvinson/WordPress-Plugin-Boilerplate/) | [wppb.me](https://wppb.me/) | [CodeStar framework](https://github.com/Codestar/codestar-framework) | [CodyFrame](https://github.com/CodyHouse/codyhouse-framework) | [bulma](https://bulma.io/) | Icons from [IconFinder.com](https://www.iconfinder.com/).
 
 ## Changelog
+
+### 1.7.1 (2023.01.13)
+
+* [Fixed] Page title and url on the mobile sharesheet no longer displays mangled PHP code.
 
 ### 1.7.0 (2022.10.26)
 
