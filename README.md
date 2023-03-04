@@ -5,7 +5,7 @@ Donate link: https://paypal.me/qriouslad
 Tags: share button, floating share, scriptless share, web share api, native mobile share, ios android share  
 Requires at least: 5.0  
 Tested up to: 6.1.1  
-Stable tag: 1.7.1  
+Stable tag: 1.7.3  
 License: GPLv2 or later  
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -77,7 +77,7 @@ Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://githu
 
 ## Changelog
 
-### 1.7.2 (2023.03.04)
+### 1.7.3 (2023.03.04)
 
 * [Fixed] Uncaught TypeError for certain scenarios.
 
