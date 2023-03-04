@@ -329,7 +329,7 @@ class Floating_Share_Button_Public {
 		$offset_fade = $options['fsb_button']['offset_fade'];
 
         $post_title = urlencode( get_the_title() );
-        $post_url = urlencode( get_the_permalink() );
+        $post_url = ( false !== get_the_permalink() ) ? urlencode( get_the_permalink() ) : '';
 
 		wp_localize_script(
 			$this->plugin_name,
@@ -342,8 +342,8 @@ class Floating_Share_Button_Public {
 				'fsbOffset' => $offset_show,
 				'fsbOffsetOpacity' => $offset_fade,
 				'fsbDevice' => $device,
-				// 'fsbPostTitle' => $post_title,
-				// 'fsbPostUrl' => $post_url,
+				'fsbPostTitle' => $post_title,
+				'fsbPostUrl' => $post_url,
 			)
 		);
 
@@ -407,8 +407,8 @@ class Floating_Share_Button_Public {
 
         // Get post permalink, title and featured image
 
-        $post_url = urlencode( get_the_permalink() );
         $post_title = urlencode( get_the_title() );
+        $post_url = ( false !== get_the_permalink() ) ? urlencode( get_the_permalink() ) : '';
 
         if ( !empty( get_the_post_thumbnail_url( get_the_ID(), 'full' ) ) ) {
 	        $post_media = urlencode( get_the_post_thumbnail_url( get_the_ID(), 'full' ) );
