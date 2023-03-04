@@ -77,6 +77,10 @@ Flexible Scroll top was built with: [WordPress Plugin Boilerplate](https://githu
 
 ## Changelog
 
+### 1.7.2 (2023.03.04)
+
+* [Fixed] Uncaught TypeError for certain scenarios.
+
 ### 1.7.1 (2023.01.13)
 
 * [Fixed] Page title and url on the mobile sharesheet no longer displays mangled PHP code.
