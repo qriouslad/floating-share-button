@@ -342,8 +342,8 @@ class Floating_Share_Button_Public {
 				'fsbOffset' => $offset_show,
 				'fsbOffsetOpacity' => $offset_fade,
 				'fsbDevice' => $device,
-				'fsbPostTitle' => $post_title,
-				'fsbPostUrl' => $post_url,
+				// 'fsbPostTitle' => $post_title,
+				// 'fsbPostUrl' => $post_url,
 			)
 		);
 
